@@ -1,15 +1,14 @@
 <?php
 
-use App\Http\Middleware\EnsureTeamMembership;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth'])->group(function (): void {
     Route::redirect('settings', 'settings/profile');
 
     Route::livewire('settings/profile', 'pages::settings.profile')->name('profile.edit');
 });
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function (): void {
     Route::livewire('settings/appearance', 'pages::settings.appearance')->name('appearance.edit');
 
     Route::livewire('settings/security', 'pages::settings.security')
@@ -17,12 +16,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
             'password.confirm',
         ])
         ->name('security.edit');
-
-    Route::livewire('settings/teams', 'pages::teams.index')->name('teams.index');
-
-    Route::middleware(EnsureTeamMembership::class)->group(function () {
-        Route::livewire('settings/teams/{team}', 'pages::teams.edit')->name('teams.edit');
-    });
 });
 
 Route::get('.well-known/passkey-endpoints', function () {

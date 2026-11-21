@@ -9,10 +9,12 @@ use App\Http\Responses\PasskeyLoginResponse;
 use App\Http\Responses\RegisterResponse;
 use App\Http\Responses\TwoFactorLoginResponse;
 use App\Http\Responses\VerifyEmailResponse;
-use App\Models\TeamInvitation;
+use App\Models\User;
+use App\Services\AuthService;
 use Illuminate\Auth\Middleware\RequirePassword;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
@@ -44,6 +46,7 @@ class FortifyServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->configureActions();
+        $this->configureAuthentication();
         $this->configureViews();
         $this->configureRateLimiting();
         $this->configurePasswordConfirmation();
@@ -69,19 +72,39 @@ class FortifyServiceProvider extends ServiceProvider
     }
 
     /**
+     * Configure custom authentication logic to enforce tenant KTP verification status (FR-02).
+     */
+    private function configureAuthentication(): void
+    {
+        Fortify::authenticateUsing(function (Request $request): ?User {
+            $email = (string) $request->input(Fortify::username());
+            $password = (string) $request->input('password');
+
+            $user = User::query()
+                ->with('penyewa')
+                ->where('email', $email)
+                ->first();
+
+            if (! $user || ! Hash::check($password, $user->password)) {
+                return null;
+            }
+
+            app(AuthService::class)->validateLoginEligibility($user);
+
+            return $user;
+        });
+    }
+
+    /**
      * Configure Fortify views.
      */
     private function configureViews(): void
     {
-        Fortify::loginView(fn (Request $request) => view('pages::auth.login', [
-            'teamInvitation' => $this->teamInvitation($request),
-        ]));
+        Fortify::loginView(fn () => view('pages::auth.login'));
         Fortify::verifyEmailView(fn () => view('pages::auth.verify-email'));
         Fortify::twoFactorChallengeView(fn () => view('pages::auth.two-factor-challenge'));
         Fortify::confirmPasswordView(fn () => view('pages::auth.confirm-password'));
-        Fortify::registerView(fn (Request $request) => view('pages::auth.register', [
-            'teamInvitation' => $this->teamInvitation($request),
-        ]));
+        Fortify::registerView(fn () => view('pages::auth.register'));
         Fortify::resetPasswordView(fn () => view('pages::auth.reset-password'));
         Fortify::requestPasswordResetLinkView(fn () => view('pages::auth.forgot-password'));
     }
@@ -108,37 +131,5 @@ class FortifyServiceProvider extends ServiceProvider
                 ($credentialId ?: $request->session()->getId()).'|'.$request->ip(),
             );
         });
-    }
-
-    /**
-     * Get the pending team invitation context for auth pages.
-     *
-     * @return array{code: string, teamName: string}|null
-     */
-    private function teamInvitation(Request $request): ?array
-    {
-        $invitationCode = $request->query('invitation');
-
-        if (! is_string($invitationCode)) {
-            return null;
-        }
-
-        $invitation = TeamInvitation::query()
-            ->with('team')
-            ->where('code', $invitationCode)
-            ->whereNull('accepted_at')
-            ->where(fn ($query) => $query
-                ->whereNull('expires_at')
-                ->orWhere('expires_at', '>=', now()))
-            ->first();
-
-        if (! $invitation) {
-            return null;
-        }
-
-        return [
-            'code' => $invitation->code,
-            'teamName' => $invitation->team->name,
-        ];
     }
 }

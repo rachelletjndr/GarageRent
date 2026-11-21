@@ -2,8 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Enums\TeamRole;
-use App\Models\Team;
+use App\Enums\RoleEnum;
+use App\Enums\VerificationStatusEnum;
+use App\Models\Penyewa;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
@@ -31,6 +32,7 @@ class UserFactory extends Factory
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
+            'role' => RoleEnum::Penyewa,
             'remember_token' => Str::random(10),
             'two_factor_secret' => null,
             'two_factor_recovery_codes' => null,
@@ -39,20 +41,59 @@ class UserFactory extends Factory
     }
 
     /**
-     * Configure the model factory.
+     * Indicate that the user has an admin role.
      */
-    public function configure(): static
+    public function admin(): static
     {
-        return $this->afterCreating(function ($user) {
-            $team = Team::factory()->personal()->create([
-                'name' => $user->name."'s Team",
-            ]);
+        return $this->state(fn (array $attributes): array => [
+            'role' => RoleEnum::Admin,
+        ]);
+    }
 
-            $team->members()->attach($user, [
-                'role' => TeamRole::Owner->value,
-            ]);
+    /**
+     * Attach an approved Penyewa profile to the user.
+     *
+     * @param  array<string, mixed>  $attributes
+     */
+    public function withApprovedPenyewa(array $attributes = []): static
+    {
+        return $this->afterCreating(function (User $user) use ($attributes): void {
+            Penyewa::factory()->create(array_merge([
+                'user_id' => $user->id,
+                'nama_lengkap' => $user->name,
+                'status_verifikasi' => VerificationStatusEnum::Approved,
+                'tanggal_verifikasi' => now(),
+            ], $attributes));
+        });
+    }
 
-            $user->switchTeam($team);
+    /**
+     * Attach a pending Penyewa profile to the user.
+     *
+     * @param  array<string, mixed>  $attributes
+     */
+    public function withPendingPenyewa(array $attributes = []): static
+    {
+        return $this->afterCreating(function (User $user) use ($attributes): void {
+            Penyewa::factory()->pending()->create(array_merge([
+                'user_id' => $user->id,
+                'nama_lengkap' => $user->name,
+            ], $attributes));
+        });
+    }
+
+    /**
+     * Attach a rejected Penyewa profile to the user.
+     *
+     * @param  array<string, mixed>  $attributes
+     */
+    public function withRejectedPenyewa(string $reason = 'NIK KTP tidak valid.', array $attributes = []): static
+    {
+        return $this->afterCreating(function (User $user) use ($reason, $attributes): void {
+            Penyewa::factory()->rejected($reason)->create(array_merge([
+                'user_id' => $user->id,
+                'nama_lengkap' => $user->name,
+            ], $attributes));
         });
     }
 
@@ -61,7 +102,7 @@ class UserFactory extends Factory
      */
     public function unverified(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn (array $attributes): array => [
             'email_verified_at' => null,
         ]);
     }
@@ -71,7 +112,7 @@ class UserFactory extends Factory
      */
     public function withTwoFactor(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn (array $attributes): array => [
             'two_factor_secret' => encrypt('secret'),
             'two_factor_recovery_codes' => encrypt(json_encode(['recovery-code-1'])),
             'two_factor_confirmed_at' => now(),
