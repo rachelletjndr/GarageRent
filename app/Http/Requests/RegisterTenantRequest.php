@@ -2,11 +2,16 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\VerificationStatusEnum;
+use App\Models\Penyewa;
+use App\Models\User;
+use Closure;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 /**
  * Validation rules and messages for Tenant Self-Registration (FR-01 & Section 7.1 SRS).
+ * Allows previously rejected accounts (status_verifikasi = rejected) to re-register
+ * using their previous email and/or NIK.
  */
 class RegisterTenantRequest extends FormRequest
 {
@@ -40,6 +45,7 @@ class RegisterTenantRequest extends FormRequest
 
     /**
      * Reusable registration validation rules according to SRS Section 7.1.
+     * Rejected accounts are excluded from unique blocking so they can re-register.
      *
      * @return array<string, array<int, mixed>>
      */
@@ -50,7 +56,16 @@ class RegisterTenantRequest extends FormRequest
                 'required',
                 'numeric',
                 'digits:16',
-                Rule::unique('penyewa', 'nik'),
+                function (string $attribute, mixed $value, Closure $fail): void {
+                    $activeOrPendingExists = Penyewa::query()
+                        ->where('nik', (string) $value)
+                        ->where('status_verifikasi', '!=', VerificationStatusEnum::Rejected->value)
+                        ->exists();
+
+                    if ($activeOrPendingExists) {
+                        $fail('NIK harus 16 digit angka dan belum terdaftar.');
+                    }
+                },
             ],
             'name' => [
                 'required',
@@ -67,7 +82,16 @@ class RegisterTenantRequest extends FormRequest
                 'string',
                 'email',
                 'max:100',
-                Rule::unique('users', 'email'),
+                function (string $attribute, mixed $value, Closure $fail): void {
+                    $existingUser = User::query()
+                        ->with('penyewa')
+                        ->where('email', (string) $value)
+                        ->first();
+
+                    if ($existingUser && (! $existingUser->penyewa || ! $existingUser->penyewa->isRejected())) {
+                        $fail('Email harus berformat valid dan belum digunakan.');
+                    }
+                },
             ],
             'password' => [
                 'required',

@@ -10,40 +10,89 @@
 
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-mono: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
-    --color-zinc-50: #fafafa;
-    --color-zinc-100: #f5f5f5;
-    --color-zinc-200: #e5e5e5;
-    --color-zinc-300: #d4d4d4;
-    --color-zinc-400: #a3a3a3;
-    --color-zinc-500: #737373;
-    --color-zinc-600: #525252;
-    --color-zinc-700: #404040;
-    --color-zinc-800: #262626;
-    --color-zinc-900: #171717;
-    --color-zinc-950: #0a0a0a;
+    /* Reference Color Palette: Deep Obsidian Black & Metallic Rose / Blush Pink */
+    --color-zinc-50: #f8f1f4;
+    --color-zinc-100: #efe2e8;
+    --color-zinc-200: #dcc6d0;
+    --color-zinc-300: #c2a3b1;
+    --color-zinc-400: #a58493;
+    --color-zinc-500: #8c6c7b;
+    --color-zinc-600: #6e505e;
+    --color-zinc-700: #2b2026;
+    --color-zinc-800: #1b1418;
+    --color-zinc-900: #120d10;
+    --color-zinc-950: #0a0809;
 
-    --color-accent: var(--color-neutral-800);
-    --color-accent-content: var(--color-neutral-800);
-    --color-accent-foreground: var(--color-white);
+    /* Primary Brand Accent mapped to Reference Metallic Rose Pink */
+    --color-indigo-50: #fdf2f7;
+    --color-indigo-100: #fbe5ef;
+    --color-indigo-200: #f7cbe0;
+    --color-indigo-300: #f3b0c9;
+    --color-indigo-400: #ea8ab1;
+    --color-indigo-500: #e373a0;
+    --color-indigo-600: #d65a8c;
+    --color-indigo-700: #b84372;
+    --color-indigo-800: #492133;
+    --color-indigo-900: #2e1420;
+    --color-indigo-950: #1b0b13;
+
+    /* Secondary Accent mapped to Soft Rose / Blush tones */
+    --color-emerald-50: #fdf2f6;
+    --color-emerald-100: #fae6ee;
+    --color-emerald-200: #f5cce0;
+    --color-emerald-300: #f5b8cf;
+    --color-emerald-400: #ec93b7;
+    --color-emerald-500: #e373a0;
+    --color-emerald-600: #d65a8c;
+    --color-emerald-700: #b84372;
+    --color-emerald-800: #4d2437;
+    --color-emerald-900: #2d1520;
+    --color-emerald-950: #190b12;
+
+    /* Warm Rose-Gold for Pending / Warning states */
+    --color-amber-50: #fdf4f5;
+    --color-amber-100: #fae6e9;
+    --color-amber-200: #f3cbd2;
+    --color-amber-300: #eab0bc;
+    --color-amber-400: #df8d9e;
+    --color-amber-500: #d16d82;
+    --color-amber-600: #ba5369;
+    --color-amber-700: #993e52;
+    --color-amber-800: #4c212b;
+    --color-amber-900: #30141b;
+    --color-amber-950: #1c0b0f;
+
+    --color-accent: #e88db4;
+    --color-accent-content: #f3b0c9;
+    --color-accent-foreground: #0a0809;
 }
 
 @layer theme {
     .dark {
-        --color-accent: var(--color-white);
-        --color-accent-content: var(--color-white);
-        --color-accent-foreground: var(--color-neutral-800);
+        --color-accent: #e88db4;
+        --color-accent-content: #f3b0c9;
+        --color-accent-foreground: #0a0809;
     }
 }
 
 @layer base {
-
     *,
     ::after,
     ::before,
     ::backdrop,
     ::file-selector-button {
-        border-color: var(--color-gray-200, currentColor);
+        border-color: var(--color-zinc-700, currentColor);
+    }
+
+    html,
+    body {
+        background-color: #0a0809;
+        background-image:
+            radial-gradient(circle at 50% 10%, rgba(227, 115, 160, 0.14) 0%, rgba(110, 32, 66, 0.05) 38%, transparent 70%),
+            radial-gradient(circle at 85% 75%, rgba(227, 115, 160, 0.08) 0%, transparent 55%);
+        background-attachment: fixed;
     }
 }
 
@@ -52,7 +101,7 @@
 }
 
 [data-flux-label] {
-    @apply  !mb-0 !leading-tight;
+    @apply !mb-0 !leading-tight;
 }
 
 input:focus[data-flux-control],
@@ -60,7 +109,3 @@ textarea:focus[data-flux-control],
 select:focus[data-flux-control] {
     @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
 }
-
-/* \[:where(&)\]:size-4 {
-    @apply size-4;
-} */

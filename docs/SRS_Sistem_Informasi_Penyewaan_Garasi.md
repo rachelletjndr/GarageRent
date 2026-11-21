@@ -38,7 +38,7 @@ Perusahaan penyedia jasa sewa ruang parkir dan garasi kendaraan menghadapi tanta
 2. Adanya infrastruktur pengisian daya listrik (*EV charging*) pada garasi khusus mobil listrik yang mewajibkan pengisian daya hingga penuh, sehingga menuntut integrasi perhitungan tarif sewa dan biaya konsumsi listrik berbasis kapasitas baterai (kWh).
 3. Kompleksitas penentuan durasi sewa kalender riil: sistem harus menghitung durasi bulanan berdasarkan kalender aktual (termasuk tahun kabisat) dan membatasi sewa harian maksimal $(\text{jumlah hari bulan terkait} - 1)$ hari, dengan batasan maksimal 1 kali transaksi adalah 1 bulan kalender.
 4. Fleksibilitas penjadwalan sewa: pengguna dapat memesan jauh-jauh hari (*advance booking*) dengan tanggal mulai *default* hari ini tanpa mengizinkan tanggal masa lalu (*past date*).
-5. Pengendalian proses perpanjangan masa sewa (*extension*) yang disentralisasi melalui Admin guna mencegah perubahan sepihak, verifikasi pembayaran bertanda defisit negatif, serta penyusunan laporan keuangan terpadu berbasis mata uang Rupiah (IDR).
+5. Pengendalian proses perpanjangan masa sewa (*extension*) yang disentralisasi melalui Admin guna mencegah perubahan sepihak, verifikasi pembayaran perpanjangan, serta penyusunan laporan keuangan terpadu berbasis mata uang Rupiah (IDR).
 
 Oleh karena itu, dibutuhkan sebuah perangkat lunak berbasis web/mobile terpadu yang memadukan prinsip pemrograman berorientasi objek (OOP), pemrograman terstruktur, integritas basis data relasional, serta pelaporan multi-dimensi.
 
@@ -47,8 +47,8 @@ Oleh karena itu, dibutuhkan sebuah perangkat lunak berbasis web/mobile terpadu y
 2. **Pengendalian Alokasi Sesuai Jenis Kendaraan:** Menegakkan aturan penempatan jenis kendaraan ke tipe garasi yang valid guna mencegah kesalahan alokasi fisik.
 3. **Penyederhanaan dan Fleksibilitas Transaksi:** Mempermudah penyewa dalam memesan sewa garasi secara *real-time* atau terjadwal di masa depan, memilih durasi harian/bulanan kalender aktual, dan mengunggah bukti bayar.
 4. **Sentralisasi Kendali Perpanjangan:** Memberikan otoritas eksklusif kepada Admin untuk memperbarui masa sewa penyewa, mencatat bukti pembayaran perpanjangan, dan memelihara status garasi.
-5. **Akurasi Perhitungan Finansial dalam Rupiah (IDR):** Mengotomatisasi kalkulasi tarif sewa berbasis kalender aktual, tarif bulanan tetap otomatis ($25 \times \text{tarif harian}$), biaya isi daya EV penuh, serta pencatatan defisit perpanjangan (total kurang bayar bernilai negatif).
-6. **Akuntabilitas & Audit Trail:** Menyediakan modul verifikasi identitas penyewa baru oleh Admin serta laporan sewa garasi multi-dimensi (tahunan, bulanan, harian, per tipe, dan per penyewa).
+5. **Akurasi Perhitungan Finansial dalam Rupiah (IDR):** Mengotomatisasi kalkulasi tarif sewa berbasis kalender aktual, tarif bulanan tetap otomatis ($25 \times \text{tarif harian}$), biaya isi daya EV penuh, serta perhitungan biaya perpanjangan sewa.
+6. **Akuntabilitas & Audit Trail:** Menyediakan modul verifikasi identitas penyewa baru oleh Admin serta tampilan laporan sewa garasi multi-dimensi (tahunan, bulanan, harian, per tipe, dan per penyewa).
 
 ### 1.4 Ruang Lingkup Aplikasi
 - **Platform:** Web Application (Arsitektur MVC berbasis Laravel / PHP 8.5) dengan antarmuka responsif, terhubung ke *Relational Database Management System* (MySQL/PostgreSQL/SQLite).
@@ -57,7 +57,7 @@ Oleh karena itu, dibutuhkan sebuah perangkat lunak berbasis web/mobile terpadu y
   - Modul Autentikasi dan Manajemen Akun (Pendaftaran & Verifikasi KTP).
   - Modul Manajemen Master Garasi (Pembuatan Massal, Penetapan Tarif Harian & Listrik IDR oleh Admin, Perhitungan Otomatis Tarif Bulanan 25x Harian, Kodefikasi Otomatis).
   - Modul Transaksi Sewa Baru (Katalog Ketersediaan Rentang Tanggal, Penjadwalan Tanggal Mulai, Validasi Durasi Kalender, Kalkulasi Biaya Transparan, Upload Bukti Bayar).
-  - Modul Perpanjangan Masa Sewa (Dikelola oleh Admin atas permohonan penyewa, Perubahan Tanggal Akhir, Perhitungan Kurang Bayar Negatif, Bukti Bayar Perpanjangan).
+  - Modul Perpanjangan Masa Sewa (Dikelola oleh Admin atas permohonan penyewa, Perubahan Tanggal Akhir, Perhitungan Biaya Perpanjangan, Bukti Bayar Perpanjangan).
   - Modul Laporan & Analitik Penyewaan (Multi-Dimensi).
 - **Batasan Sistem (Out of Scope):**
   - Penyewa **tidak memiliki akses** untuk memperpanjang masa sewa secara mandiri melalui aplikasi (harus melalui Admin).
@@ -93,8 +93,8 @@ Admin adalah petugas operasional pengelola garasi.
 2. Melihat daftar calon penyewa berstatus `pending` dan memverifikasi (menerima/menolak) pendaftaran berdasarkan validitas KTP.
 3. Membuat unit-unit garasi baru secara massal (*bulk*) berdasarkan tipe dengan kalkulasi ID otomatis serta menetapkan tarif sewa harian dan tarif listrik per kWh saja (seluruhnya dalam IDR); sistem secara otomatis menghitung harga sewa bulanan ($25 \times \text{tarif harian}$).
 4. Melihat daftar seluruh garasi yang sedang aktif disewa (`used`) pada tanggal berjalan (hari ini) beserta detail masa sewanya.
-5. **Memproses Perpanjangan Masa Sewa (Eksklusif):** Menerima pengajuan perpanjangan dari penyewa, memperbarui tanggal akhir masa sewa di sistem, memvalidasi perhitungan total kurang bayar (bernilai negatif), dan mengunggah berkas bukti pembayaran perpanjangan.
-6. Mengakses, memfilter, dan mengunduh/mencetak laporan penyewaan (tahunan, bulanan, harian, tipe garasi, penyewa).
+5. **Memproses Perpanjangan Masa Sewa (Eksklusif):** Menerima pengajuan perpanjangan dari penyewa, memperbarui tanggal akhir masa sewa di sistem, menghitung biaya perpanjangan, dan mengunggah berkas bukti pembayaran perpanjangan.
+6. Mengakses, melihat, dan memfilter laporan penyewaan (tahunan, bulanan, harian, tipe garasi, penyewa) langsung di layar aplikasi.
 
 ### 2.2 Role Penyewa (Tenant)
 Penyewa adalah pelanggan yang menyewa unit garasi untuk kendaraannya.
@@ -254,22 +254,19 @@ Penyewa adalah pelanggan yang menyewa unit garasi untuk kendaraannya.
   - Sistem menghitung selisih hari perpanjangan: $\Delta \text{Hari} = \text{Tanggal Selesai Baru} - \text{Tanggal Selesai Lama}$.
   - Sistem menghitung biaya tambahan perpanjangan berdasarkan tarif sewa harian:
     $$\text{Biaya Perpanjangan (IDR)} = \Delta \text{Hari} \times \text{Tarif Harian Garasi}$$
-  - **Ketentuan Khusus Soal (Total Kurang Bayar Negatif):**
-    Sistem menetapkan nilai **Total Kurang Bayar** sebagai nilai negatif dari biaya tambahan tersebut:
-    $$\text{Total Kurang Bayar} = -1 \times \text{Biaya Perpanjangan}$$
   - Admin mengunggah berkas bukti transfer pelunasan biaya perpanjangan.
   - Sistem memperbarui tanggal selesai sewa transaksi dan mencatat riwayat perpanjangan.
 - **Output:** Data sewa terperbarui, informasi masa sewa terbaru ditampilkan ke sistem (dapat dilihat oleh Penyewa maupun Admin), status garasi tetap `used` hingga tanggal baru tercapai.
 
 ### FR-10: Pelaporan Penyewaan Multi-Dimensi
-- **Deskripsi:** Admin menghasilkan laporan rekapitulasi penyewaan garasi untuk kebutuhan analitik dan pembukuan dalam mata uang IDR.
+- **Deskripsi:** Admin melihat laporan rekapitulasi penyewaan garasi untuk kebutuhan analitik dan pembukuan dalam mata uang IDR.
 - **Filter Laporan:**
   1. *Laporan Bulanan:* Rekapitulasi sewa per bulan dalam tahun tertentu.
   2. *Laporan Harian:* Rekapitulasi sewa per hari dalam bulan tertentu.
   3. *Laporan Berdasarkan Tipe Garasi:* Sepeda (`S`), Mobil (`C`), atau Listrik (`E`).
   4. *Laporan Berdasarkan Penyewa:* Riwayat transaksi spesifik per penyewa.
 - **Fitur Khusus Monitoring:** Tampilan instan daftar seluruh unit garasi yang sedang aktif disewa (`used`) pada tanggal hari ini.
-- **Output:** Tabel tabular interaktif dengan fitur filter, total pendapatan akumulatif (IDR), dan opsi cetak/ekspor (PDF/Excel).
+- **Output:** Tabel tabular interaktif dengan fitur filter dan total pendapatan akumulatif (IDR) yang ditampilkan di layar aplikasi.
 
 ---
 
@@ -315,8 +312,8 @@ Semua aturan bisnis di bawah ini bersifat mengikat dan wajib diterapkan pada log
 +--------+---------------------------------+------------------------------------------------------------+
 | BR-10  | Tarif Listrik Per Garasi EV     | Diinput oleh Admin saat bulk create garasi listrik (IDR).  |
 +--------+---------------------------------+------------------------------------------------------------+
-| BR-12* | KETENTUAN KHUSUS PERPANJANGAN   | Perpanjangan HANYA melalui Admin (penyewa hubungi Admin).  |
-|        |                                 | Total Kurang Bayar WAJIB bernilai NEGATIF (-1 * Tambahan). |
+| BR-11  | KETENTUAN PERPANJANGAN SEWA     | Perpanjangan HANYA melalui Admin (penyewa hubungi Admin).  |
+|        |                                 | Biaya Perpanjangan = Selisih Hari * Tarif Harian Garasi.   |
 +--------+---------------------------------+------------------------------------------------------------+
 ```
 
@@ -400,22 +397,19 @@ Aturan validasi pemilihan tipe garasi berdasarkan kendaraan:
 #### BR-10: Penentuan Tarif Listrik per kWh
 - Tarif listrik per kWh merupakan atribut spesifik yang ditentukan oleh Admin saat proses pembuatan garasi mobil listrik (`E`) secara massal dalam satuan Rupiah (IDR).
 
-#### BR-12: KETENTUAN KHUSUS SOAL — Perpanjangan Masa Sewa & Kurang Bayar Negatif
+#### BR-11: Ketentuan Perpanjangan Masa Sewa Garasi
 > [!IMPORTANT]
-> **Ketentuan Bisnis & Soal:** 
+> **Ketentuan Bisnis:** 
 > 1. Pengguna/penyewa **tidak dapat memperpanjang masa sewa secara mandiri** melalui aplikasi; pengguna harus menghubungi Admin.
 > 2. Admin bertanggung jawab memperbarui data penyewaan di sistem, termasuk tanggal akhir sewa dan bukti pembayaran.
-> 3. Pada fitur **Perpanjang Sewa Garasi**, nilai **Total Kurang Bayar harus bernilai negatif**.
 
 **Rumus Matematis Baku:**
 1. Tambahan Durasi Hari:
    $$\Delta \text{Hari} = \text{Tanggal Selesai Baru} - \text{Tanggal Selesai Lama}$$
 2. Nilai Tagihan Tambahan Perpanjangan:
    $$\text{Biaya Perpanjangan (IDR)} = \Delta \text{Hari} \times \text{Tarif Sewa Harian}$$
-3. Total Kurang Bayar (Defisit/Piutang) yang Ditetapkan Sistem:
-   $$\text{Total Kurang Bayar} = -1 \times \text{Biaya Perpanjangan}$$
-   *Contoh:* Jika tambahan perpanjangan adalah 5 hari dengan tarif harian Rp 50.000, maka Biaya Perpanjangan adalah Rp 250.000, dan sistem mencatat serta menampilkan **Total Kurang Bayar = -250.000** (minus Rp 250.000).
-4. Setelah Admin memperbarui data, sistem menampilkan informasi masa sewa terbaru yang dapat dipantau oleh penyewa.
+   *Contoh:* Jika tambahan perpanjangan adalah 5 hari dengan tarif harian Rp 50.000, maka Biaya Perpanjangan adalah **Rp 250.000**.
+3. Setelah Admin memperbarui data, sistem menampilkan informasi masa sewa terbaru yang dapat dipantau oleh penyewa.
 
 ---
 
@@ -524,19 +518,19 @@ flowchart TD
     H --> H1[Admin Cari Transaksi Garasi Aktif yang Disewa]
     H1 --> H2[Admin Pilih Unit Garasi]
     H2 --> H3[Admin Masukkan Tanggal Selesai Sewa Baru]
-    H3 --> H4[Sistem Hitung Biaya & Set TOTAL KURANG BAYAR = NEGATIF]
+    H3 --> H4[Sistem Hitung Biaya Perpanjangan]
     H4 --> H5[Admin Unggah Bukti Bayar Perpanjangan]
     H5 --> H6[Simpan: Perbarui Tanggal Selesai & Masa Sewa Terkini]
     
     E --> I[Menu 4: Laporan Sewa Garasi]
     I --> I1[Pilih Filter: Per Bulan/Tahun, Per Hari/Bulan, Per Tipe, Per Penyewa]
     I1 --> I2[Sistem Tampilkan Data Agregat & Transaksi IDR]
-    I2 --> I3[Cetak / Ekspor Laporan]
     
     F4 --> J([Selesai])
     F5 --> J
     G5 --> J
     H6 --> J
+    I2 --> J
 ```
 
 ---
@@ -568,7 +562,7 @@ flowchart TD
 | `durasi_hari` | Integer | Kondisional | `required_if:tipe_sewa,harian`, `nullable`, `integer`, `min:1`, `max:(daysInMonth - 1)` | "Durasi sewa harian maksimal adalah jumlah hari bulan kalender dikurangi 1 hari." |
 | `durasi_bulan`| Integer | Kondisional | `required_if:tipe_sewa,bulanan`, `nullable`, `integer`, `max:1` | "Durasi sewa bulanan dalam satu kali pemesanan maksimal 1 bulan kalender." |
 | `tipe_kendaraan` | String | Wajib | `required`, `in:sepeda,sepeda_motor,mobil_bensin,mobil_listrik` | "Pilihan tipe kendaraan tidak valid." |
-| `plat_nomor` | String | Wajib | `required`, `string`, `max:15` | "Plat nomor kendaraan wajib diisi." |
+| `plat_nomor` | String | Kondisional | `required_unless:tipe_kendaraan,sepeda`, `nullable`, `string`, `max:15` | "Plat nomor kendaraan wajib diisi (kecuali sepeda)." |
 | `merek` | String | Wajib | `required`, `string`, `max:50` | "Merek kendaraan wajib diisi." |
 | `kapasitas_kwh`| Numeric | Kondisional | `required_if:tipe_kendaraan,mobil_listrik`, `nullable`, `numeric`, `min:1` | "Kapasitas baterai kWh wajib diisi untuk kendaraan mobil listrik." |
 | `garasi_id` | String | Wajib | `required`, `exists:garasi,id`, validasi kompatibilitas & jadwal | "Garasi yang dipilih tidak cocok atau tidak tersedia pada rentang tanggal tersebut." |
@@ -661,13 +655,12 @@ Format kriteria keberhasilan disusun mengikuti pola **Given - When - Then** untu
     - $\text{Biaya Listrik} = 50 \text{ kWh} \times \text{Rp } 2.000 = \text{Rp } 100.000$.
     - $\text{Total Bayar} = \text{Rp } 2.500.000 + \text{Rp } 100.000 = \text{Rp } 2.600.000$.
 
-### 8.6 Modul Perpanjangan Masa Sewa (Eksklusif Admin & Kurang Bayar Negatif)
-- **AC-15 (Positive - Eksekusi Perpanjangan oleh Admin & Nilai Negatif):**
+### 8.6 Modul Perpanjangan Masa Sewa (Eksklusif Admin)
+- **AC-15 (Positive - Eksekusi Perpanjangan oleh Admin):**
   - *Given:* Transaksi sewa garasi `C001` aktif dengan tarif harian Rp 50.000 dan tanggal selesai sewa `2026-11-25`.
   - *When:* Admin memperpanjang masa sewa hingga `2026-11-30` ($\Delta \text{Hari} = 5\text{ hari}$) dan mengunggah bukti pembayaran perpanjangan.
   - *Then:*
     - Biaya perpanjangan dihitung $5 \times \text{Rp } 50.000 = \text{Rp } 250.000$.
-    - Nilai **Total Kurang Bayar** tersimpan dan tertampil persis bernilai negatif: **-250.000** ($\text{Rp } -250.000$).
     - Tanggal selesai sewa diperbarui menjadi `2026-11-30`.
 - **AC-16 (Otorisasi - Penyewa Dilarang Akses Form Perpanjangan):**
   - *Given:* Pengguna login dengan role Penyewa.
@@ -695,7 +688,7 @@ Format kriteria keberhasilan disusun mengikuti pola **Given - When - Then** untu
 | REQ-06b| Validasi Kalender Dinamis | BR-04, BR-05 | `RentalCalendarValidator` | `test_calendar_month_and_daily_duration_limit()` |
 | REQ-07 | FR-07: Hitung Biaya IDR | BR-02, BR-03 | `PricingCalculatorService` | `test_rental_price_calculation()` |
 | REQ-08 | Upload Bukti Bayar | - | `PaymentProofService` | `test_payment_proof_upload_validation()` |
-| REQ-09 | FR-09: Perpanjangan Admin | BR-12 | `RentalExtensionService` | `test_admin_exclusive_extension_negative_deficit()` |
+| REQ-09 | FR-09: Perpanjangan Admin | BR-11 | `RentalExtensionService` | `test_admin_exclusive_extension()` |
 | REQ-10 | Laporan Multi-Dimensi | BR-03 | `RentalReportService` | `test_filter_rental_reports()` |
 
 ---
@@ -719,13 +712,10 @@ Untuk menjamin kepatuhan penuh terhadap instruksi lembar uji kompetensi, berikut
 12. Pembuatan garasi massal: Tipe garasi, ID otomatis format `S001`, `C001`, `E001` (incremental, maks 999), Harga sewa, Harga listrik per kWh.
 13. Verifikasi pendaftar baru oleh Admin: terima/tolak pendaftaran setelah cek validasi KTP.
 14. Perpanjangan masa sewa dilakukan secara eksklusif oleh Admin setelah penyewa menghubungi Admin; penyewa tidak dapat memperpanjang mandiri. Sistem menampilkan informasi masa sewa terbaru.
-15. Laporan sewa garasi: Per bulan dalam tahun tertentu, Per hari dalam bulan tertentu, Per tipe garasi, Per penyewa.
-16. **Ketentuan Khusus Soal:**
-    - Pada fitur Perpanjang Sewa Garasi, **total kurang bayar harus bernilai negatif** ($\text{Total Kurang Bayar} = -1 \times \text{Biaya Tambahan Perpanjangan}$).
+15. Laporan sewa garasi: Per bulan dalam tahun tertentu, Per hari dalam bulan tertentu, Per tipe garasi, Per penyewa (ditampilkan langsung di aplikasi tanpa ekspor/cetak).
 
 ### 10.2 Asumsi Desain & Teknis (Architectural Assumptions)
 1. *Format File Upload Bukti Transfer:* Dibatasi pada `.jpg`, `.jpeg`, `.png` dengan ukuran maksimum 2MB untuk efisiensi penyimpanan server dan integritas visual bukti pembayaran.
 2. *Status Pengguna Baru:* Nilai default enum saat registrasi adalah `pending` sebelum diubah menjadi `approved` atau `rejected` oleh Admin.
 3. *Siklus Status Garasi:* Kolom `status` bertipe string enum (`available`, `used`).
 4. *Skema Framework & Database:* Menggunakan Laravel 11 / PHP 8.5 dengan database relasional (MySQL/PostgreSQL/SQLite) dan pengujian otomatis Pest framework.
-5. *Penomoran Aturan Bisnis:* Penomoran BR-12 dipertahankan sebagai BR-12 meskipun BR-11 dihapus (terkait penghapusan ketentuan penambahan 10% sewa baru) guna menjaga stabilitas referensi silang internal.

@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use App\Enums\StatusSewaEnum;
 use App\Enums\VerificationStatusEnum;
 use Database\Factories\PenyewaFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 
 /**
@@ -24,6 +27,8 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $updated_at
  * @property-read User $user
  * @property-read User|null $verifier
+ * @property-read Collection<int, Kendaraan> $kendaraan
+ * @property-read Collection<int, Penyewaan> $penyewaan
  */
 #[Fillable([
     'user_id',
@@ -81,6 +86,26 @@ class Penyewa extends Model
     }
 
     /**
+     * Get the vehicles registered by this tenant.
+     *
+     * @return HasMany<Kendaraan, $this>
+     */
+    public function kendaraan(): HasMany
+    {
+        return $this->hasMany(Kendaraan::class, 'penyewa_id');
+    }
+
+    /**
+     * Get the rental transactions booked by this tenant.
+     *
+     * @return HasMany<Penyewaan, $this>
+     */
+    public function penyewaan(): HasMany
+    {
+        return $this->hasMany(Penyewaan::class, 'penyewa_id');
+    }
+
+    /**
      * Determine whether the tenant registration is approved.
      */
     public function isApproved(): bool
@@ -128,5 +153,28 @@ class Penyewa extends Model
             'tanggal_verifikasi' => now(),
             'catatan_penolakan' => $note,
         ]);
+    }
+
+    /**
+     * Get the list of vehicles owned by this tenant (UML Class Diagram method).
+     *
+     * @return Collection<int, Kendaraan>
+     */
+    public function getKendaraanList(): Collection
+    {
+        return $this->kendaraan()->orderBy('id')->get();
+    }
+
+    /**
+     * Get the list of currently active rental transactions for this tenant (UML Class Diagram method).
+     *
+     * @return Collection<int, Penyewaan>
+     */
+    public function getPenyewaanAktif(): Collection
+    {
+        return $this->penyewaan()
+            ->where('status_sewa', StatusSewaEnum::Aktif->value)
+            ->orderBy('id')
+            ->get();
     }
 }

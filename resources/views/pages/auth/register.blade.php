@@ -2,14 +2,14 @@
     <div class="flex flex-col gap-6">
         <x-auth-header
             :title="__('Registrasi Akun Penyewa')"
-            :description="__('Lengkapi biodata sesuai KTP untuk mendaftar sebagai penyewa garasi kendaraan')"
+            :description="__('Isi data diri sesuai KTP buat bikin akun penyewa garasi baru.')"
         />
 
         <!-- Session Status -->
         <x-auth-session-status class="text-center" :status="session('status')" />
 
         <div class="rounded-lg border border-amber-200 bg-amber-50 p-3 text-xs text-amber-800 dark:border-amber-800/60 dark:bg-amber-950/40 dark:text-amber-300">
-            <strong>Informasi Verifikasi KTP:</strong> Pendaftaran baru akan berstatus <em>Menunggu Verifikasi (Pending)</em> dan dapat digunakan login setelah NIK KTP divalidasi oleh Admin.
+            <strong>KTP Verification Info:</strong> Akun baru otomatis berstatus <em>Pending</em> dan sudah bisa dipakai login begitu NIK KTP kamu di-approve Admin.
         </div>
 
         <form method="POST" action="{{ route('register.store') }}" class="flex flex-col gap-5">
@@ -103,7 +103,7 @@
         <div class="space-x-1 rtl:space-x-reverse text-center text-sm text-zinc-600 dark:text-zinc-400">
             <span>{{ __('Sudah memiliki akun terverifikasi?') }}</span>
             <flux:link :href="route('login')" wire:navigate>
-                {{ __('Masuk (Login)') }}
+                {{ __('Login') }}
             </flux:link>
         </div>
     </div>

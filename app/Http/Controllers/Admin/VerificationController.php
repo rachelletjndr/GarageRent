@@ -50,6 +50,12 @@ class VerificationController extends Controller
 
         abort_if(! $admin || ! $admin->isAdmin(), 403);
 
+        if (! $penyewa->isPending()) {
+            return redirect()
+                ->route('admin.verifications.index', $request->only(['status', 'search']))
+                ->withErrors(['status_verifikasi' => 'Status verifikasi penyewa yang sudah diputuskan tidak dapat diubah kembali.']);
+        }
+
         $this->verificationService->approveTenant($penyewa, $admin);
 
         return redirect()
@@ -65,6 +71,12 @@ class VerificationController extends Controller
         $admin = $request->user();
 
         abort_if(! $admin || ! $admin->isAdmin(), 403);
+
+        if (! $penyewa->isPending()) {
+            return redirect()
+                ->route('admin.verifications.index', $request->only(['status', 'search']))
+                ->withErrors(['status_verifikasi' => 'Status verifikasi penyewa yang sudah diputuskan tidak dapat diubah kembali.']);
+        }
 
         $this->verificationService->rejectTenant(
             $penyewa,

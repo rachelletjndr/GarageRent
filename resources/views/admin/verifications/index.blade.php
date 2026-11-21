@@ -5,12 +5,9 @@
             <div>
                 <flux:heading size="xl">Verifikasi Pendaftaran & Validasi KTP Penyewa</flux:heading>
                 <flux:text class="mt-1">
-                    Periksa keabsahan 16 digit NIK KTP calon penyewa sebelum memberikan hak akses login dan penyewaan garasi.
+                    Review 16 digit NIK KTP pendaftar baru sebelum kasih akses login dan booking garasi.
                 </flux:text>
             </div>
-            <flux:badge color="zinc" size="lg">
-                Role: Administrator
-            </flux:badge>
         </div>
 
         <!-- Flash Notification -->
@@ -192,8 +189,8 @@
 
                                 <!-- Tindakan Admin -->
                                 <td class="px-4 py-4 text-right align-top">
-                                    <div class="flex flex-col items-end gap-2">
-                                        @if (! $penyewa->isApproved())
+                                    @if ($penyewa->isPending())
+                                        <div class="flex flex-col items-end gap-2">
                                             <form method="POST" action="{{ route('admin.verifications.approve', $penyewa) }}">
                                                 @csrf
                                                 @method('PATCH')
@@ -206,9 +203,7 @@
                                                     Terima (Approve KTP)
                                                 </flux:button>
                                             </form>
-                                        @endif
 
-                                        @if (! $penyewa->isRejected())
                                             <form method="POST" action="{{ route('admin.verifications.reject', $penyewa) }}" class="flex flex-col items-end gap-1.5 sm:flex-row sm:items-center">
                                                 @csrf
                                                 @method('PATCH')
@@ -229,8 +224,16 @@
                                                     Tolak
                                                 </flux:button>
                                             </form>
-                                        @endif
-                                    </div>
+                                        </div>
+                                    @elseif ($penyewa->isApproved())
+                                        <span class="text-xs font-medium text-emerald-600 dark:text-emerald-400">
+                                            Verifikasi Selesai
+                                        </span>
+                                    @else
+                                        <span class="text-xs font-medium text-zinc-400 dark:text-zinc-500">
+                                            Pendaftaran Ditolak
+                                        </span>
+                                    @endif
                                 </td>
                             </tr>
                         @empty

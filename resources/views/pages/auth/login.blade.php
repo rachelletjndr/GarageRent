@@ -1,8 +1,8 @@
 <x-layouts::auth :title="__('Login - SIM-Garasi')">
     <div class="flex flex-col gap-6">
         <x-auth-header
-            :title="__('Masuk ke SIM-Garasi')"
-            :description="__('Masukkan email dan password Anda untuk mengakses Sistem Informasi Penyewaan Garasi')"
+            :title="__('Welcome Back to SIM-Garasi')"
+            :description="__('Login dengan email dan password kamu buat akses dashboard penyewaan garasi.')"
         />
 
         <!-- Session Status -->
@@ -14,21 +14,19 @@
             </div>
         @endif
 
-        <x-passkey-verify />
-
         <form method="POST" action="{{ route('login.store') }}" class="flex flex-col gap-6">
             @csrf
 
             <!-- Email Address -->
             <flux:input
                 name="email"
-                :label="__('Alamat Email')"
+                :label="__('Email')"
                 :value="old('email')"
                 type="email"
                 required
                 autofocus
                 autocomplete="email"
-                placeholder="email@garasi.test"
+                placeholder="email@gmail.com"
             />
 
             <!-- Password -->
@@ -55,7 +53,7 @@
 
             <div class="flex items-center justify-end">
                 <flux:button variant="primary" type="submit" class="w-full" data-test="login-button">
-                    {{ __('Masuk (Log in)') }}
+                    {{ __('Log in') }}
                 </flux:button>
             </div>
         </form>

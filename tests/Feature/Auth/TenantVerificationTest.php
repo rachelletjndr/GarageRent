@@ -63,9 +63,70 @@ test('rejected tenant cannot login and sees admin rejection reason', function ()
     ]);
 
     $response->assertSessionHasErrors([
-        'email' => 'Pendaftaran akun Anda telah ditolak oleh Admin. Alasan penolakan: NIK KTP tidak terdaftar di Dukcapil.',
+        'email' => 'Maaf, pendaftaran akun Anda belum disetujui oleh Admin. Alasan penolakan: NIK KTP tidak terdaftar di Dukcapil. Silakan lakukan pendaftaran kembali dengan data yang sesuai.',
     ]);
     $this->assertGuest();
+});
+
+test('rejected tenant can re-register using the same email and nik and status resets to pending', function () {
+    $rejectedUser = User::factory()->withRejectedPenyewa(
+        reason: 'Foto/Data KTP kurang jelas.',
+        attributes: ['nik' => '3171010303960099'],
+    )->create([
+        'email' => 'reregister@garasi.test',
+    ]);
+
+    $response = $this->post(route('register.store'), [
+        'nik' => '3171010303960099',
+        'name' => 'Penyewa Daftar Ulang',
+        'no_telp' => '081234560099',
+        'email' => 'reregister@garasi.test',
+        'password' => 'password123',
+        'password_confirmation' => 'password123',
+    ]);
+
+    $response->assertSessionHasNoErrors();
+
+    $rejectedUser->refresh();
+    expect($rejectedUser->name)->toBe('Penyewa Daftar Ulang')
+        ->and($rejectedUser->penyewa->status_verifikasi)->toBe(VerificationStatusEnum::Pending)
+        ->and($rejectedUser->penyewa->catatan_penolakan)->toBeNull();
+});
+
+test('approved or rejected tenant status cannot be mutated again via verification endpoints and action buttons are hidden', function () {
+    $admin = User::factory()->admin()->create();
+
+    $approvedUser = User::factory()->withApprovedPenyewa(['nik' => '3171010404940071'])->create();
+    $rejectedUser = User::factory()->withRejectedPenyewa('NIK tidak cocok', ['nik' => '3171010404940072'])->create();
+    $pendingUser = User::factory()->withPendingPenyewa(['nik' => '3171010404940073'])->create();
+
+    // 1. UI only shows approve/reject buttons for pending user, and does not show "Role: Administrator"
+    $this->actingAs($admin)
+        ->get(route('admin.verifications.index'))
+        ->assertOk()
+        ->assertDontSee('Role: Administrator')
+        ->assertSee('data-test="approve-tenant-'.$pendingUser->penyewa->id.'"', escape: false)
+        ->assertSee('data-test="reject-tenant-'.$pendingUser->penyewa->id.'"', escape: false)
+        ->assertDontSee('data-test="approve-tenant-'.$approvedUser->penyewa->id.'"', escape: false)
+        ->assertDontSee('data-test="reject-tenant-'.$approvedUser->penyewa->id.'"', escape: false)
+        ->assertDontSee('data-test="approve-tenant-'.$rejectedUser->penyewa->id.'"', escape: false)
+        ->assertDontSee('data-test="reject-tenant-'.$rejectedUser->penyewa->id.'"', escape: false);
+
+    // 2. Backend prevents changing Approved -> Rejected
+    $this->actingAs($admin)
+        ->patch(route('admin.verifications.reject', $approvedUser->penyewa), [
+            'catatan_penolakan' => 'Mencoba batalkan',
+        ])
+        ->assertSessionHasErrors(['status_verifikasi']);
+
+    expect($approvedUser->penyewa->fresh()->status_verifikasi)->toBe(VerificationStatusEnum::Approved);
+
+    // 3. Backend prevents changing Rejected -> Approved
+    $this->actingAs($admin)
+        ->patch(route('admin.verifications.approve', $rejectedUser->penyewa))
+        ->assertSessionHasErrors(['status_verifikasi']);
+
+    expect($rejectedUser->penyewa->fresh()->status_verifikasi)->toBe(VerificationStatusEnum::Rejected);
 });
 
 test('approved tenant and admin can login successfully', function () {

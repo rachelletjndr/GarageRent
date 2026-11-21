@@ -124,11 +124,16 @@ class AdminVerificationService
 
     /**
      * Approve a tenant registration and mark their KTP as verified.
+     * Only pending tenant registrations can be approved.
      */
     public function approveTenant(Penyewa $penyewa, User $admin): Penyewa
     {
         if (! $admin->isAdmin()) {
             throw new InvalidArgumentException('Hanya pengguna dengan role Admin yang dapat memverifikasi pendaftaran penyewa.');
+        }
+
+        if (! $penyewa->isPending()) {
+            throw new InvalidArgumentException('Status verifikasi penyewa yang sudah diputuskan tidak dapat diubah kembali.');
         }
 
         DB::transaction(function () use ($penyewa, $admin): void {
@@ -140,11 +145,16 @@ class AdminVerificationService
 
     /**
      * Reject a tenant registration with an optional rejection note.
+     * Only pending tenant registrations can be rejected.
      */
     public function rejectTenant(Penyewa $penyewa, User $admin, ?string $catatanPenolakan = null): Penyewa
     {
         if (! $admin->isAdmin()) {
             throw new InvalidArgumentException('Hanya pengguna dengan role Admin yang dapat menolak pendaftaran penyewa.');
+        }
+
+        if (! $penyewa->isPending()) {
+            throw new InvalidArgumentException('Status verifikasi penyewa yang sudah diputuskan tidak dapat diubah kembali.');
         }
 
         DB::transaction(function () use ($penyewa, $admin, $catatanPenolakan): void {

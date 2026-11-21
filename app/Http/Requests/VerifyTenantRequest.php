@@ -25,7 +25,7 @@ class VerifyTenantRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'catatan_penolakan' => ['nullable', 'string', 'max:500'],
+            'catatan_penolakan' => ['required', 'string', 'max:500'],
         ];
     }
 
@@ -37,6 +37,7 @@ class VerifyTenantRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'catatan_penolakan.required' => 'Alasan atau catatan penolakan KTP wajib diisi.',
             'catatan_penolakan.string' => 'Catatan penolakan harus berupa teks.',
             'catatan_penolakan.max' => 'Catatan penolakan maksimal 500 karakter.',
         ];
