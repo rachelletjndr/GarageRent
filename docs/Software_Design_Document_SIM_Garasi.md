@@ -290,6 +290,10 @@ package "Views Layer (resources/views)" {
     + render(LengthAwarePaginator tenants, ?string search): Html
   }
 
+  class VerificationNoticeView {
+    + render(Penyewa penyewa): Html
+  }
+
   class GarageManagementView {
     + render(Collection garages, array stats): Html
   }
@@ -302,6 +306,10 @@ package "Views Layer (resources/views)" {
     + render(Garasi garasi, array availableGarages): Html
   }
 
+  class RentalHistoryView {
+    + render(LengthAwarePaginator rentals): Html
+  }
+
   class ExtensionView {
     + render(Collection activeRentals, ?Penyewaan selectedRental): Html
   }
@@ -310,9 +318,28 @@ package "Views Layer (resources/views)" {
     + render(array reportData, Collection transactions): Html
   }
 
-  class AuthView {
-    + renderLogin(): Html
-    + renderRegister(): Html
+  class LoginView {
+    + render(): Html
+  }
+
+  class RegisterView {
+    + render(): Html
+  }
+
+  class ForgotPasswordView {
+    + render(): Html
+  }
+
+  class ResetPasswordView {
+    + render(string token, string email): Html
+  }
+
+  class ProfileSettingsView {
+    + render(User user): Html
+  }
+
+  class SecuritySettingsView {
+    + render(User user): Html
   }
 }
 
@@ -573,10 +600,11 @@ package "Models Layer (app/Models)" {
 ' Relasi Controller -> View (renders)
 DashboardController --> DashboardView : renders
 VerificationController --> VerificationView : renders
-VerificationNoticeController --> VerificationView : renders
+VerificationNoticeController --> VerificationNoticeView : renders
 GarageManagementController --> GarageManagementView : renders
 GarageCatalogController --> GarageCatalogView : renders
 RentalBookingController --> RentalBookingView : renders
+RentalBookingController --> RentalHistoryView : renders
 ExtensionController --> ExtensionView : renders
 ReportController --> ReportView : renders
 
@@ -653,6 +681,10 @@ classDiagram
         +render(LengthAwarePaginator)
     }
 
+    class VerificationNoticeView {
+        +render(Penyewa)
+    }
+
     class GarageManagementView {
         +render(Collection, array)
     }
@@ -665,6 +697,10 @@ classDiagram
         +render(Garasi, Collection)
     }
 
+    class RentalHistoryView {
+        +render(LengthAwarePaginator)
+    }
+
     class ExtensionView {
         +render(Collection, Penyewaan)
     }
@@ -673,9 +709,28 @@ classDiagram
         +render(array, Collection)
     }
 
-    class AuthView {
-        +renderLogin()
-        +renderRegister()
+    class LoginView {
+        +render()
+    }
+
+    class RegisterView {
+        +render()
+    }
+
+    class ForgotPasswordView {
+        +render()
+    }
+
+    class ResetPasswordView {
+        +render(string, string)
+    }
+
+    class ProfileSettingsView {
+        +render(User)
+    }
+
+    class SecuritySettingsView {
+        +render(User)
     }
 
     %% Presentation Layer (Controllers)
@@ -928,10 +983,11 @@ classDiagram
     %% Keterhubungan Controller -> View
     DashboardController --> DashboardView
     VerificationController --> VerificationView
-    VerificationNoticeController --> VerificationView
+    VerificationNoticeController --> VerificationNoticeView
     GarageManagementController --> GarageManagementView
     GarageCatalogController --> GarageCatalogView
     RentalBookingController --> RentalBookingView
+    RentalBookingController --> RentalHistoryView
     ExtensionController --> ExtensionView
     ReportController --> ReportView
 

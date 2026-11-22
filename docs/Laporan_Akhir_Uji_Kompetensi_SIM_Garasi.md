@@ -161,6 +161,10 @@ classDiagram
         +render(LengthAwarePaginator)
     }
 
+    class VerificationNoticeView {
+        +render(Penyewa)
+    }
+
     class GarageManagementView {
         +render(Collection, array)
     }
@@ -173,6 +177,10 @@ classDiagram
         +render(Garasi, Collection)
     }
 
+    class RentalHistoryView {
+        +render(LengthAwarePaginator)
+    }
+
     class ExtensionView {
         +render(Collection, Penyewaan)
     }
@@ -181,9 +189,28 @@ classDiagram
         +render(array, Collection)
     }
 
-    class AuthView {
-        +renderLogin()
-        +renderRegister()
+    class LoginView {
+        +render()
+    }
+
+    class RegisterView {
+        +render()
+    }
+
+    class ForgotPasswordView {
+        +render()
+    }
+
+    class ResetPasswordView {
+        +render(string, string)
+    }
+
+    class ProfileSettingsView {
+        +render(User)
+    }
+
+    class SecuritySettingsView {
+        +render(User)
     }
 
     %% Presentation Layer (Controllers)
@@ -420,10 +447,11 @@ classDiagram
     %% Keterhubungan Controller -> View (renders)
     DashboardController --> DashboardView
     VerificationController --> VerificationView
-    VerificationNoticeController --> VerificationView
+    VerificationNoticeController --> VerificationNoticeView
     GarageManagementController --> GarageManagementView
     GarageCatalogController --> GarageCatalogView
     RentalBookingController --> RentalBookingView
+    RentalBookingController --> RentalHistoryView
     ExtensionController --> ExtensionView
     ReportController --> ReportView
 
