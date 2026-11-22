@@ -281,6 +281,41 @@ skinparam shadowing false
 skinparam defaultFontName "Segoe UI", Arial, sans-serif
 skinparam defaultFontSize 11
 
+package "Views Layer (resources/views)" {
+  class DashboardView {
+    + render(array metrics, array garageStats): Html
+  }
+
+  class VerificationView {
+    + render(LengthAwarePaginator tenants, ?string search): Html
+  }
+
+  class GarageManagementView {
+    + render(Collection garages, array stats): Html
+  }
+
+  class GarageCatalogView {
+    + render(Collection garages, array catalogStats): Html
+  }
+
+  class RentalBookingView {
+    + render(Garasi garasi, array availableGarages): Html
+  }
+
+  class ExtensionView {
+    + render(Collection activeRentals, ?Penyewaan selectedRental): Html
+  }
+
+  class ReportView {
+    + render(array reportData, Collection transactions): Html
+  }
+
+  class AuthView {
+    + renderLogin(): Html
+    + renderRegister(): Html
+  }
+}
+
 package "Controllers Layer (app/Http/Controllers)" {
   class DashboardController {
     - DashboardService dashboardService
@@ -535,6 +570,16 @@ package "Models Layer (app/Models)" {
   }
 }
 
+' Relasi Controller -> View (renders)
+DashboardController --> DashboardView : renders
+VerificationController --> VerificationView : renders
+VerificationNoticeController --> VerificationView : renders
+GarageManagementController --> GarageManagementView : renders
+GarageCatalogController --> GarageCatalogView : renders
+RentalBookingController --> RentalBookingView : renders
+ExtensionController --> ExtensionView : renders
+ReportController --> ReportView : renders
+
 ' Relasi Controller -> Service / Model
 DashboardController --> DashboardService : uses
 VerificationController --> AdminVerificationService : uses
@@ -599,6 +644,41 @@ PerpanjanganSewa --> Pembayaran
 
 ```mermaid
 classDiagram
+    %% Presentation Layer (Views / Blade Templates)
+    class DashboardView {
+        +render(array, array)
+    }
+
+    class VerificationView {
+        +render(LengthAwarePaginator)
+    }
+
+    class GarageManagementView {
+        +render(Collection, array)
+    }
+
+    class GarageCatalogView {
+        +render(Collection, array)
+    }
+
+    class RentalBookingView {
+        +render(Garasi, Collection)
+    }
+
+    class ExtensionView {
+        +render(Collection, Penyewaan)
+    }
+
+    class ReportView {
+        +render(array, Collection)
+    }
+
+    class AuthView {
+        +renderLogin()
+        +renderRegister()
+    }
+
+    %% Presentation Layer (Controllers)
     class DashboardController {
         -DashboardService dashboardService
         +__invoke(Request)
@@ -845,6 +925,17 @@ classDiagram
         +getBuktiUrl() string
     }
 
+    %% Keterhubungan Controller -> View
+    DashboardController --> DashboardView
+    VerificationController --> VerificationView
+    VerificationNoticeController --> VerificationView
+    GarageManagementController --> GarageManagementView
+    GarageCatalogController --> GarageCatalogView
+    RentalBookingController --> RentalBookingView
+    ExtensionController --> ExtensionView
+    ReportController --> ReportView
+
+    %% Keterhubungan Controller -> Service / Model
     DashboardController --> DashboardService
     VerificationController --> AdminVerificationService
     VerificationNoticeController --> AdminVerificationService

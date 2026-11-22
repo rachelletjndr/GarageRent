@@ -152,6 +152,40 @@ Aplikasi dibangun menggunakan pola **3-Tier MVC + Service Layer Architecture**:
 
 ```mermaid
 classDiagram
+    %% Presentation Layer (Views / Blade Templates)
+    class DashboardView {
+        +render(array, array)
+    }
+
+    class VerificationView {
+        +render(LengthAwarePaginator)
+    }
+
+    class GarageManagementView {
+        +render(Collection, array)
+    }
+
+    class GarageCatalogView {
+        +render(Collection, array)
+    }
+
+    class RentalBookingView {
+        +render(Garasi, Collection)
+    }
+
+    class ExtensionView {
+        +render(Collection, Penyewaan)
+    }
+
+    class ReportView {
+        +render(array, Collection)
+    }
+
+    class AuthView {
+        +renderLogin()
+        +renderRegister()
+    }
+
     %% Presentation Layer (Controllers)
     class DashboardController {
         -DashboardService dashboardService
@@ -382,6 +416,16 @@ classDiagram
         +tolak(User) void
         +getBuktiUrl() string
     }
+
+    %% Keterhubungan Controller -> View (renders)
+    DashboardController --> DashboardView
+    VerificationController --> VerificationView
+    VerificationNoticeController --> VerificationView
+    GarageManagementController --> GarageManagementView
+    GarageCatalogController --> GarageCatalogView
+    RentalBookingController --> RentalBookingView
+    ExtensionController --> ExtensionView
+    ReportController --> ReportView
 
     %% Keterhubungan Arsitektur
     DashboardController --> DashboardService
