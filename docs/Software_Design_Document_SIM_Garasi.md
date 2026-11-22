@@ -371,6 +371,13 @@ package "Views Layer (resources/views)" #FEF3C7 {
 }
 
 package "Controllers Layer (app/Http/Controllers)" #F3F4F6 {
+  class AuthController {
+    - AuthService authService
+    + login(): View
+    + register(): View
+    + logout(): RedirectResponse
+  }
+
   class DashboardController {
     - DashboardService dashboardService
     + __invoke(Request request): View|RedirectResponse
@@ -705,6 +712,12 @@ package "Enums Layer (app/Enums)" #F3E8FF {
 }
 
 ' Relasi Controller -> View (renders)
+AuthController --> LoginView : renders
+AuthController --> RegisterView : renders
+AuthController --> ForgotPasswordView : renders
+AuthController --> ResetPasswordView : renders
+ProfileSettingsView --> User : displays & updates
+SecuritySettingsView --> User : updates password
 DashboardController --> DashboardView : renders
 VerificationController --> VerificationView : renders
 VerificationNoticeController --> VerificationNoticeView : renders
@@ -716,6 +729,7 @@ ExtensionController --> ExtensionView : renders
 ReportController --> ReportView : renders
 
 ' Relasi Controller -> Request (validates with)
+AuthController --> RegisterTenantRequest : validates with
 VerificationController --> VerifyTenantRequest : validates with
 GarageManagementController --> BulkCreateGarageRequest : validates with
 GarageManagementController --> UpdateGarageRequest : validates with
@@ -724,6 +738,7 @@ ExtensionController --> StoreExtensionRequest : validates with
 ReportController --> FilterRentalReportRequest : validates with
 
 ' Relasi Controller -> Service / Model (uses)
+AuthController --> AuthService : uses
 DashboardController --> DashboardService : uses
 VerificationController --> AdminVerificationService : uses
 VerificationNoticeController --> AdminVerificationService : uses
@@ -886,6 +901,13 @@ classDiagram
     }
 
     %% Presentation Layer (Controllers)
+    class AuthController {
+        -AuthService authService
+        +login() View
+        +register() View
+        +logout() RedirectResponse
+    }
+
     class DashboardController {
         -DashboardService dashboardService
         +__invoke(Request)
@@ -1219,6 +1241,12 @@ classDiagram
     }
 
     %% Keterhubungan Controller -> View (renders)
+    AuthController --> LoginView
+    AuthController --> RegisterView
+    AuthController --> ForgotPasswordView
+    AuthController --> ResetPasswordView
+    ProfileSettingsView --> User
+    SecuritySettingsView --> User
     DashboardController --> DashboardView
     VerificationController --> VerificationView
     VerificationNoticeController --> VerificationNoticeView
@@ -1230,6 +1258,7 @@ classDiagram
     ReportController --> ReportView
 
     %% Keterhubungan Controller -> Request (validates with)
+    AuthController --> RegisterTenantRequest
     VerificationController --> VerifyTenantRequest
     GarageManagementController --> BulkCreateGarageRequest
     GarageManagementController --> UpdateGarageRequest
@@ -1238,6 +1267,7 @@ classDiagram
     ReportController --> FilterRentalReportRequest
 
     %% Keterhubungan Controller -> Service / Model (uses)
+    AuthController --> AuthService
     DashboardController --> DashboardService
     VerificationController --> AdminVerificationService
     VerificationNoticeController --> AdminVerificationService
@@ -1312,7 +1342,7 @@ classDiagram
     classDef enumStyle fill:#F3E8FF,stroke:#9333EA,stroke-width:1.5px,color:#6B21A8;
 
     class DashboardView,VerificationView,VerificationNoticeView,GarageManagementView,GarageCatalogView,RentalBookingView,RentalHistoryView,ExtensionView,ReportView,LoginView,RegisterView,ForgotPasswordView,ResetPasswordView,ProfileSettingsView,SecuritySettingsView viewStyle;
-    class DashboardController,VerificationController,GarageManagementController,ExtensionController,ReportController,GarageCatalogController,RentalBookingController,VerificationNoticeController,PaymentProofController controllerStyle;
+    class AuthController,DashboardController,VerificationController,GarageManagementController,ExtensionController,ReportController,GarageCatalogController,RentalBookingController,VerificationNoticeController,PaymentProofController controllerStyle;
     class RegisterTenantRequest,VerifyTenantRequest,BulkCreateGarageRequest,UpdateGarageRequest,StoreRentalRequest,StoreExtensionRequest,FilterRentalReportRequest requestStyle;
     class AuthService,DashboardService,AdminVerificationService,GarageFactoryService,GarageAvailabilityService,RentalCalendarValidator,PricingCalculatorService,PaymentProofService,RentalBookingService,RentalExtensionService,RentalReportService serviceStyle;
     class User,Penyewa,Garasi,Kendaraan,Penyewaan,PerpanjanganSewa,Pembayaran modelStyle;
