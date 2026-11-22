@@ -281,7 +281,7 @@ skinparam shadowing false
 skinparam defaultFontName "Segoe UI", Arial, sans-serif
 skinparam defaultFontSize 11
 
-package "Views Layer (resources/views)" {
+package "Views Layer (resources/views)" #FEF3C7 {
   class DashboardView {
     + render(array metrics, array garageStats): Html
     + toggleQuickAction(string action): void
@@ -369,7 +369,7 @@ package "Views Layer (resources/views)" {
   }
 }
 
-package "Controllers Layer (app/Http/Controllers)" {
+package "Controllers Layer (app/Http/Controllers)" #F3F4F6 {
   class DashboardController {
     - DashboardService dashboardService
     + __invoke(Request request): View|RedirectResponse
@@ -422,7 +422,44 @@ package "Controllers Layer (app/Http/Controllers)" {
   }
 }
 
-package "Services Layer (app/Services)" {
+package "Requests Layer (app/Http/Requests)" #FFEDD5 {
+  class RegisterTenantRequest {
+    + authorize(): bool
+    + rules(): array
+  }
+
+  class VerifyTenantRequest {
+    + authorize(): bool
+    + rules(): array
+  }
+
+  class BulkCreateGarageRequest {
+    + authorize(): bool
+    + rules(): array
+  }
+
+  class UpdateGarageRequest {
+    + authorize(): bool
+    + rules(): array
+  }
+
+  class StoreRentalRequest {
+    + authorize(): bool
+    + rules(): array
+  }
+
+  class StoreExtensionRequest {
+    + authorize(): bool
+    + rules(): array
+  }
+
+  class FilterRentalReportRequest {
+    + authorize(): bool
+    + rules(): array
+  }
+}
+
+package "Services Layer (app/Services)" #DBEAFE {
   class AuthService {
     + registerTenant(array data): User
     + validateLoginEligibility(User user): void
@@ -514,7 +551,7 @@ package "Services Layer (app/Services)" {
   }
 }
 
-package "Models Layer (app/Models)" {
+package "Models Layer (app/Models)" #DCFCE7 {
   class User {
     - int id
     - string name
@@ -623,6 +660,49 @@ package "Models Layer (app/Models)" {
   }
 }
 
+package "Enums Layer (app/Enums)" #F3E8FF {
+  enum RoleEnum {
+    ADMIN = "admin"
+    PENYEWA = "penyewa"
+  }
+
+  enum VerificationStatusEnum {
+    PENDING = "pending"
+    APPROVED = "approved"
+    REJECTED = "rejected"
+  }
+
+  enum StatusGarasiEnum {
+    TERSEDIA = "tersedia"
+    DIGUNAKAN = "digunakan"
+  }
+
+  enum TipeGarasiEnum {
+    STANDARD = "S"
+    CHARGING = "C"
+    ELECTRIC = "E"
+  }
+
+  enum TipeKendaraanEnum {
+    MOTOR = "motor"
+    MOBIL = "mobil"
+    MOTOR_LISTRIK = "motor_listrik"
+    MOBIL_LISTRIK = "mobil_listrik"
+  }
+
+  enum TipeSewaEnum {
+    HARIAN = "harian"
+    BULANAN = "bulanan"
+  }
+
+  enum StatusSewaEnum {
+    MENUNGGU_VERIFIKASI = "menunggu_verifikasi"
+    AKTIF = "aktif"
+    SELESAI = "selesai"
+    DIBATALKAN = "dibatalkan"
+  }
+}
+
 ' Relasi Controller -> View (renders)
 DashboardController --> DashboardView : renders
 VerificationController --> VerificationView : renders
@@ -634,9 +714,23 @@ RentalBookingController --> RentalHistoryView : renders
 ExtensionController --> ExtensionView : renders
 ReportController --> ReportView : renders
 
-' Relasi View -> Service / Model (submits & updates)
-LoginView --> AuthService : submits credentials
+' Relasi Controller -> Request (validates with)
+VerificationController --> VerifyTenantRequest : validates with
+GarageManagementController --> BulkCreateGarageRequest : validates with
+GarageManagementController --> UpdateGarageRequest : validates with
+RentalBookingController --> StoreRentalRequest : validates with
+ExtensionController --> StoreExtensionRequest : validates with
+ReportController --> FilterRentalReportRequest : validates with
+
+' Relasi View -> Request & Service / Model (submits & binds)
+RegisterView --> RegisterTenantRequest : validates input
 RegisterView --> AuthService : submits registration
+VerificationView --> VerifyTenantRequest : binds validation
+GarageManagementView --> BulkCreateGarageRequest : binds form
+RentalBookingView --> StoreRentalRequest : binds form
+ExtensionView --> StoreExtensionRequest : binds form
+ReportView --> FilterRentalReportRequest : binds filter
+LoginView --> AuthService : submits credentials
 ForgotPasswordView --> AuthService : submits reset request
 ResetPasswordView --> AuthService : submits new password
 ProfileSettingsView --> User : displays & updates
@@ -670,6 +764,7 @@ RentalExtensionService --> PaymentProofService
 ' Relasi Service -> Model
 AuthService --> User : manages
 AuthService --> Penyewa : manages
+AuthService --> RegisterTenantRequest : processes
 AdminVerificationService --> Penyewa : verifies
 GarageFactoryService --> Garasi : creates & updates
 GarageAvailabilityService --> Garasi : checks
@@ -700,6 +795,15 @@ Kendaraan --> Penyewaan
 Penyewaan --> PerpanjanganSewa
 Penyewaan --> Pembayaran
 PerpanjanganSewa --> Pembayaran
+
+' Relasi Model -> Enum (type definition)
+User --> RoleEnum : uses
+Penyewa --> VerificationStatusEnum : uses
+Garasi --> TipeGarasiEnum : uses
+Garasi --> StatusGarasiEnum : uses
+Kendaraan --> TipeKendaraanEnum : uses
+Penyewaan --> TipeSewaEnum : uses
+Penyewaan --> StatusSewaEnum : uses
 @enduml
 ```
 
@@ -846,6 +950,43 @@ classDiagram
         +__invoke(Request, Pembayaran)
     }
 
+    %% Requests Layer (app/Http/Requests)
+    class RegisterTenantRequest {
+        +authorize() bool
+        +rules() array
+    }
+
+    class VerifyTenantRequest {
+        +authorize() bool
+        +rules() array
+    }
+
+    class BulkCreateGarageRequest {
+        +authorize() bool
+        +rules() array
+    }
+
+    class UpdateGarageRequest {
+        +authorize() bool
+        +rules() array
+    }
+
+    class StoreRentalRequest {
+        +authorize() bool
+        +rules() array
+    }
+
+    class StoreExtensionRequest {
+        +authorize() bool
+        +rules() array
+    }
+
+    class FilterRentalReportRequest {
+        +authorize() bool
+        +rules() array
+    }
+
+    %% Service & Validator Layer (app/Services)
     class AuthService {
         +registerTenant(array) User
         +validateLoginEligibility(User) void
@@ -1041,7 +1182,56 @@ classDiagram
         +getBuktiUrl() string
     }
 
-    %% Keterhubungan Controller -> View
+    %% Enums Layer (app/Enums)
+    class RoleEnum {
+        <<enumeration>>
+        ADMIN = "admin"
+        PENYEWA = "penyewa"
+    }
+
+    class VerificationStatusEnum {
+        <<enumeration>>
+        PENDING = "pending"
+        APPROVED = "approved"
+        REJECTED = "rejected"
+    }
+
+    class StatusGarasiEnum {
+        <<enumeration>>
+        TERSEDIA = "tersedia"
+        DIGUNAKAN = "digunakan"
+    }
+
+    class TipeGarasiEnum {
+        <<enumeration>>
+        STANDARD = "S"
+        CHARGING = "C"
+        ELECTRIC = "E"
+    }
+
+    class TipeKendaraanEnum {
+        <<enumeration>>
+        MOTOR = "motor"
+        MOBIL = "mobil"
+        MOTOR_LISTRIK = "motor_listrik"
+        MOBIL_LISTRIK = "mobil_listrik"
+    }
+
+    class TipeSewaEnum {
+        <<enumeration>>
+        HARIAN = "harian"
+        BULANAN = "bulanan"
+    }
+
+    class StatusSewaEnum {
+        <<enumeration>>
+        MENUNGGU_VERIFIKASI = "menunggu_verifikasi"
+        AKTIF = "aktif"
+        SELESAI = "selesai"
+        DIBATALKAN = "dibatalkan"
+    }
+
+    %% Keterhubungan Controller -> View (renders)
     DashboardController --> DashboardView
     VerificationController --> VerificationView
     VerificationNoticeController --> VerificationNoticeView
@@ -1052,9 +1242,23 @@ classDiagram
     ExtensionController --> ExtensionView
     ReportController --> ReportView
 
-    %% Keterhubungan View -> Service / Model (submits & updates)
-    LoginView --> AuthService
+    %% Keterhubungan Controller -> Request (validates with)
+    VerificationController --> VerifyTenantRequest
+    GarageManagementController --> BulkCreateGarageRequest
+    GarageManagementController --> UpdateGarageRequest
+    RentalBookingController --> StoreRentalRequest
+    ExtensionController --> StoreExtensionRequest
+    ReportController --> FilterRentalReportRequest
+
+    %% Keterhubungan View -> Request & Service / Model (binds & submits)
+    RegisterView --> RegisterTenantRequest
     RegisterView --> AuthService
+    VerificationView --> VerifyTenantRequest
+    GarageManagementView --> BulkCreateGarageRequest
+    RentalBookingView --> StoreRentalRequest
+    ExtensionView --> StoreExtensionRequest
+    ReportView --> FilterRentalReportRequest
+    LoginView --> AuthService
     ForgotPasswordView --> AuthService
     ResetPasswordView --> AuthService
     ProfileSettingsView --> User
@@ -1086,6 +1290,7 @@ classDiagram
 
     AuthService --> User
     AuthService --> Penyewa
+    AuthService --> RegisterTenantRequest
     AdminVerificationService --> Penyewa
     GarageFactoryService --> Garasi
     GarageAvailabilityService --> Garasi
@@ -1115,6 +1320,30 @@ classDiagram
     Penyewaan --> PerpanjanganSewa
     Penyewaan --> Pembayaran
     PerpanjanganSewa --> Pembayaran
+
+    %% Keterhubungan Model -> Enum (type definition)
+    User --> RoleEnum
+    Penyewa --> VerificationStatusEnum
+    Garasi --> TipeGarasiEnum
+    Garasi --> StatusGarasiEnum
+    Kendaraan --> TipeKendaraanEnum
+    Penyewaan --> TipeSewaEnum
+    Penyewaan --> StatusSewaEnum
+
+    %% Style Classes matching Reference Template
+    classDef viewStyle fill:#FEF3C7,stroke:#D97706,stroke-width:1.5px,color:#92400E;
+    classDef controllerStyle fill:#F3F4F6,stroke:#4B5563,stroke-width:1.5px,color:#1F2937;
+    classDef requestStyle fill:#FFEDD5,stroke:#EA580C,stroke-width:1.5px,color:#9A3412;
+    classDef serviceStyle fill:#DBEAFE,stroke:#2563EB,stroke-width:1.5px,color:#1E40AF;
+    classDef modelStyle fill:#DCFCE7,stroke:#16A34A,stroke-width:1.5px,color:#166534;
+    classDef enumStyle fill:#F3E8FF,stroke:#9333EA,stroke-width:1.5px,color:#6B21A8;
+
+    class DashboardView,VerificationView,VerificationNoticeView,GarageManagementView,GarageCatalogView,RentalBookingView,RentalHistoryView,ExtensionView,ReportView,LoginView,RegisterView,ForgotPasswordView,ResetPasswordView,ProfileSettingsView,SecuritySettingsView viewStyle;
+    class DashboardController,VerificationController,GarageManagementController,ExtensionController,ReportController,GarageCatalogController,RentalBookingController,VerificationNoticeController,PaymentProofController controllerStyle;
+    class RegisterTenantRequest,VerifyTenantRequest,BulkCreateGarageRequest,UpdateGarageRequest,StoreRentalRequest,StoreExtensionRequest,FilterRentalReportRequest requestStyle;
+    class AuthService,DashboardService,AdminVerificationService,GarageFactoryService,GarageAvailabilityService,RentalCalendarValidator,PricingCalculatorService,PaymentProofService,RentalBookingService,RentalExtensionService,RentalReportService serviceStyle;
+    class User,Penyewa,Garasi,Kendaraan,Penyewaan,PerpanjanganSewa,Pembayaran modelStyle;
+    class RoleEnum,VerificationStatusEnum,StatusGarasiEnum,TipeGarasiEnum,TipeKendaraanEnum,TipeSewaEnum,StatusSewaEnum enumStyle;
 ```
 
 ---
