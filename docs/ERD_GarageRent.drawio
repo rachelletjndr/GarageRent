@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2026-11-22T08:00:00.000Z" agent="GarageRent ERD" version="24.0.0">
+  <diagram id="ERD7Tables" name="ERD 7 Tabel (Skema Fisik Database)">
+    <mxGraphModel dx="1600" dy="1100" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="t_users" value="&lt;div style=&quot;text-align:center; font-weight:bold; font-size:12px; padding:6px 0; border-bottom:1.5px solid #D946EF; background-color:#FDF4FF; font-family:Segoe UI,Helvetica,Arial;&quot;&gt;users&lt;/div&gt;&lt;table style=&quot;width:100%; border-collapse:collapse; font-size:10px; font-family:Segoe UI,Helvetica,Arial;&quot;&gt;&lt;tr style=&quot;border-bottom:1px solid #D946EF;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #D946EF;&quot;&gt;bigint&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #D946EF;&quot;&gt;id&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;PK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #D946EF;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #D946EF;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #D946EF;&quot;&gt;name&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #D946EF;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #D946EF;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #D946EF;&quot;&gt;email&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;UK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #D946EF;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #D946EF;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #D946EF;&quot;&gt;password&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #D946EF;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #D946EF;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #D946EF;&quot;&gt;role&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #D946EF;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #D946EF;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #D946EF;&quot;&gt;remember_token&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #D946EF;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #D946EF;&quot;&gt;datetime&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #D946EF;&quot;&gt;created_at&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #D946EF;&quot;&gt;datetime&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #D946EF;&quot;&gt;updated_at&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;/table&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#FDF4FF;strokeColor=#D946EF;strokeWidth=1.5;shadow=0;overflow=hidden;" vertex="1" parent="1">
+  <mxGeometry x="180" y="40" width="240" height="215" as="geometry" />
+</mxCell>
+        <mxCell id="t_penyewa" value="&lt;div style=&quot;text-align:center; font-weight:bold; font-size:12px; padding:6px 0; border-bottom:1.5px solid #D946EF; background-color:#FDF4FF; font-family:Segoe UI,Helvetica,Arial;&quot;&gt;penyewa&lt;/div&gt;&lt;table style=&quot;width:100%; border-collapse:collapse; font-size:10px; font-family:Segoe UI,Helvetica,Arial;&quot;&gt;&lt;tr style=&quot;border-bottom:1px solid #D946EF;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #D946EF;&quot;&gt;bigint&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #D946EF;&quot;&gt;id&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;PK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #D946EF;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #D946EF;&quot;&gt;bigint&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #D946EF;&quot;&gt;user_id&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;FK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #D946EF;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #D946EF;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #D946EF;&quot;&gt;nik&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;UK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #D946EF;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #D946EF;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #D946EF;&quot;&gt;nama_lengkap&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #D946EF;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #D946EF;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #D946EF;&quot;&gt;no_telp&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #D946EF;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #D946EF;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #D946EF;&quot;&gt;status_verifikasi&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #D946EF;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #D946EF;&quot;&gt;bigint&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #D946EF;&quot;&gt;diverifikasi_oleh&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;FK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #D946EF;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #D946EF;&quot;&gt;datetime&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #D946EF;&quot;&gt;tanggal_verifikasi&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #D946EF;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #D946EF;&quot;&gt;text&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #D946EF;&quot;&gt;catatan_penolakan&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #D946EF;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #D946EF;&quot;&gt;datetime&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #D946EF;&quot;&gt;created_at&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #D946EF;&quot;&gt;datetime&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #D946EF;&quot;&gt;updated_at&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;/table&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#FDF4FF;strokeColor=#D946EF;strokeWidth=1.5;shadow=0;overflow=hidden;" vertex="1" parent="1">
+  <mxGeometry x="470" y="40" width="250" height="265" as="geometry" />
+</mxCell>
+        <mxCell id="t_kendaraan" value="&lt;div style=&quot;text-align:center; font-weight:bold; font-size:12px; padding:6px 0; border-bottom:1.5px solid #06B6D4; background-color:#ECFEFF; font-family:Segoe UI,Helvetica,Arial;&quot;&gt;kendaraan&lt;/div&gt;&lt;table style=&quot;width:100%; border-collapse:collapse; font-size:10px; font-family:Segoe UI,Helvetica,Arial;&quot;&gt;&lt;tr style=&quot;border-bottom:1px solid #06B6D4;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #06B6D4;&quot;&gt;bigint&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #06B6D4;&quot;&gt;id&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;PK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #06B6D4;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #06B6D4;&quot;&gt;bigint&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #06B6D4;&quot;&gt;penyewa_id&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;FK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #06B6D4;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #06B6D4;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #06B6D4;&quot;&gt;plat_nomor&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;UK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #06B6D4;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #06B6D4;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #06B6D4;&quot;&gt;tipe_kendaraan&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #06B6D4;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #06B6D4;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #06B6D4;&quot;&gt;merek&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #06B6D4;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #06B6D4;&quot;&gt;decimal&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #06B6D4;&quot;&gt;kapasitas_kwh&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #06B6D4;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #06B6D4;&quot;&gt;datetime&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #06B6D4;&quot;&gt;created_at&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #06B6D4;&quot;&gt;datetime&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #06B6D4;&quot;&gt;updated_at&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;/table&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#ECFEFF;strokeColor=#06B6D4;strokeWidth=1.5;shadow=0;overflow=hidden;" vertex="1" parent="1">
+  <mxGeometry x="60" y="360" width="240" height="215" as="geometry" />
+</mxCell>
+        <mxCell id="t_garasi" value="&lt;div style=&quot;text-align:center; font-weight:bold; font-size:12px; padding:6px 0; border-bottom:1.5px solid #06B6D4; background-color:#ECFEFF; font-family:Segoe UI,Helvetica,Arial;&quot;&gt;garasi&lt;/div&gt;&lt;table style=&quot;width:100%; border-collapse:collapse; font-size:10px; font-family:Segoe UI,Helvetica,Arial;&quot;&gt;&lt;tr style=&quot;border-bottom:1px solid #06B6D4;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #06B6D4;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #06B6D4;&quot;&gt;id&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;PK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #06B6D4;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #06B6D4;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #06B6D4;&quot;&gt;tipe_garasi&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #06B6D4;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #06B6D4;&quot;&gt;decimal&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #06B6D4;&quot;&gt;harga_sewa_harian&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #06B6D4;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #06B6D4;&quot;&gt;decimal&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #06B6D4;&quot;&gt;harga_sewa_bulanan&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #06B6D4;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #06B6D4;&quot;&gt;decimal&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #06B6D4;&quot;&gt;tarif_kwh&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #06B6D4;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #06B6D4;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #06B6D4;&quot;&gt;status&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #06B6D4;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #06B6D4;&quot;&gt;datetime&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #06B6D4;&quot;&gt;created_at&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #06B6D4;&quot;&gt;datetime&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #06B6D4;&quot;&gt;updated_at&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;/table&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#ECFEFF;strokeColor=#06B6D4;strokeWidth=1.5;shadow=0;overflow=hidden;" vertex="1" parent="1">
+  <mxGeometry x="670" y="360" width="240" height="215" as="geometry" />
+</mxCell>
+        <mxCell id="t_penyewaan" value="&lt;div style=&quot;text-align:center; font-weight:bold; font-size:12px; padding:6px 0; border-bottom:1.5px solid #F97316; background-color:#FFF7ED; font-family:Segoe UI,Helvetica,Arial;&quot;&gt;penyewaan&lt;/div&gt;&lt;table style=&quot;width:100%; border-collapse:collapse; font-size:10px; font-family:Segoe UI,Helvetica,Arial;&quot;&gt;&lt;tr style=&quot;border-bottom:1px solid #F97316;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #F97316;&quot;&gt;bigint&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #F97316;&quot;&gt;id&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;PK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #F97316;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #F97316;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #F97316;&quot;&gt;nomor_transaksi&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;UK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #F97316;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #F97316;&quot;&gt;bigint&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #F97316;&quot;&gt;penyewa_id&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;FK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #F97316;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #F97316;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #F97316;&quot;&gt;garasi_id&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;FK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #F97316;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #F97316;&quot;&gt;bigint&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #F97316;&quot;&gt;kendaraan_id&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;FK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #F97316;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #F97316;&quot;&gt;date&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #F97316;&quot;&gt;tanggal_mulai&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #F97316;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #F97316;&quot;&gt;date&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #F97316;&quot;&gt;tanggal_selesai&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #F97316;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #F97316;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #F97316;&quot;&gt;tipe_sewa&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #F97316;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #F97316;&quot;&gt;integer&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #F97316;&quot;&gt;durasi&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #F97316;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #F97316;&quot;&gt;decimal&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #F97316;&quot;&gt;tarif_pokok&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #F97316;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #F97316;&quot;&gt;decimal&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #F97316;&quot;&gt;biaya_listrik&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #F97316;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #F97316;&quot;&gt;decimal&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #F97316;&quot;&gt;total_bayar&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #F97316;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #F97316;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #F97316;&quot;&gt;status_sewa&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #F97316;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #F97316;&quot;&gt;datetime&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #F97316;&quot;&gt;created_at&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #F97316;&quot;&gt;datetime&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #F97316;&quot;&gt;updated_at&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;/table&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#FFF7ED;strokeColor=#F97316;strokeWidth=1.5;shadow=0;overflow=hidden;" vertex="1" parent="1">
+  <mxGeometry x="345" y="360" width="260" height="335" as="geometry" />
+</mxCell>
+        <mxCell id="t_perpanjangan" value="&lt;div style=&quot;text-align:center; font-weight:bold; font-size:12px; padding:6px 0; border-bottom:1.5px solid #22C55E; background-color:#F0FDF4; font-family:Segoe UI,Helvetica,Arial;&quot;&gt;perpanjangan_sewa&lt;/div&gt;&lt;table style=&quot;width:100%; border-collapse:collapse; font-size:10px; font-family:Segoe UI,Helvetica,Arial;&quot;&gt;&lt;tr style=&quot;border-bottom:1px solid #22C55E;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #22C55E;&quot;&gt;bigint&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #22C55E;&quot;&gt;id&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;PK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #22C55E;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #22C55E;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #22C55E;&quot;&gt;nomor_perpanjangan&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;UK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #22C55E;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #22C55E;&quot;&gt;bigint&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #22C55E;&quot;&gt;penyewaan_id&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;FK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #22C55E;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #22C55E;&quot;&gt;bigint&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #22C55E;&quot;&gt;admin_id&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;FK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #22C55E;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #22C55E;&quot;&gt;date&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #22C55E;&quot;&gt;tanggal_selesai_lama&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #22C55E;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #22C55E;&quot;&gt;date&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #22C55E;&quot;&gt;tanggal_selesai_baru&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #22C55E;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #22C55E;&quot;&gt;integer&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #22C55E;&quot;&gt;selisih_hari&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #22C55E;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #22C55E;&quot;&gt;decimal&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #22C55E;&quot;&gt;tarif_harian_snapshot&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #22C55E;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #22C55E;&quot;&gt;decimal&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #22C55E;&quot;&gt;biaya_perpanjangan&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #22C55E;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #22C55E;&quot;&gt;datetime&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #22C55E;&quot;&gt;created_at&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #22C55E;&quot;&gt;datetime&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #22C55E;&quot;&gt;updated_at&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;/table&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#F0FDF4;strokeColor=#22C55E;strokeWidth=1.5;shadow=0;overflow=hidden;" vertex="1" parent="1">
+  <mxGeometry x="180" y="750" width="260" height="265" as="geometry" />
+</mxCell>
+        <mxCell id="t_pembayaran" value="&lt;div style=&quot;text-align:center; font-weight:bold; font-size:12px; padding:6px 0; border-bottom:1.5px solid #22C55E; background-color:#F0FDF4; font-family:Segoe UI,Helvetica,Arial;&quot;&gt;pembayaran&lt;/div&gt;&lt;table style=&quot;width:100%; border-collapse:collapse; font-size:10px; font-family:Segoe UI,Helvetica,Arial;&quot;&gt;&lt;tr style=&quot;border-bottom:1px solid #22C55E;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #22C55E;&quot;&gt;bigint&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #22C55E;&quot;&gt;id&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;PK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #22C55E;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #22C55E;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #22C55E;&quot;&gt;nomor_pembayaran&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;UK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #22C55E;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #22C55E;&quot;&gt;bigint&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #22C55E;&quot;&gt;penyewaan_id&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;FK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #22C55E;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #22C55E;&quot;&gt;bigint&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #22C55E;&quot;&gt;perpanjangan_id&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;FK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #22C55E;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #22C55E;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #22C55E;&quot;&gt;jenis_pembayaran&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #22C55E;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #22C55E;&quot;&gt;decimal&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #22C55E;&quot;&gt;nominal&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #22C55E;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #22C55E;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #22C55E;&quot;&gt;bukti_transfer&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #22C55E;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #22C55E;&quot;&gt;datetime&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #22C55E;&quot;&gt;waktu_bayar&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #22C55E;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #22C55E;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #22C55E;&quot;&gt;status_verifikasi&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #22C55E;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #22C55E;&quot;&gt;bigint&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #22C55E;&quot;&gt;diverifikasi_oleh&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;FK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #22C55E;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #22C55E;&quot;&gt;datetime&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #22C55E;&quot;&gt;created_at&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #22C55E;&quot;&gt;datetime&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #22C55E;&quot;&gt;updated_at&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;/table&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#F0FDF4;strokeColor=#22C55E;strokeWidth=1.5;shadow=0;overflow=hidden;" vertex="1" parent="1">
+  <mxGeometry x="500" y="750" width="260" height="285" as="geometry" />
+</mxCell>
+        <mxCell id="rel_u_p" value="has profile" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;jump=none;strokeColor=#1E293B;strokeWidth=1.5;fontSize=10;fontFamily=Segoe UI,Arial;startArrow=ERmandOne;startFill=0;endArrow=ERmandOne;endFill=0;" edge="1" parent="1" source="t_users" target="t_penyewa">
+  <mxGeometry relative="1" as="geometry" />
+</mxCell>
+        <mxCell id="rel_p_k" value="has" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;jump=none;strokeColor=#1E293B;strokeWidth=1.5;fontSize=10;fontFamily=Segoe UI,Arial;startArrow=ERmandOne;startFill=0;endArrow=ERmany;endFill=0;" edge="1" parent="1" source="t_penyewa" target="t_kendaraan">
+  <mxGeometry relative="1" as="geometry" />
+</mxCell>
+        <mxCell id="rel_p_pny" value="rent transactions" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;jump=none;strokeColor=#1E293B;strokeWidth=1.5;fontSize=10;fontFamily=Segoe UI,Arial;startArrow=ERmandOne;startFill=0;endArrow=ERmany;endFill=0;" edge="1" parent="1" source="t_penyewa" target="t_penyewaan">
+  <mxGeometry relative="1" as="geometry" />
+</mxCell>
+        <mxCell id="rel_k_pny" value="used at" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;jump=none;strokeColor=#1E293B;strokeWidth=1.5;fontSize=10;fontFamily=Segoe UI,Arial;startArrow=ERmandOne;startFill=0;endArrow=ERmany;endFill=0;" edge="1" parent="1" source="t_kendaraan" target="t_penyewaan">
+  <mxGeometry relative="1" as="geometry" />
+</mxCell>
+        <mxCell id="rel_g_pny" value="rented at" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;jump=none;strokeColor=#1E293B;strokeWidth=1.5;fontSize=10;fontFamily=Segoe UI,Arial;startArrow=ERmandOne;startFill=0;endArrow=ERmany;endFill=0;" edge="1" parent="1" source="t_garasi" target="t_penyewaan">
+  <mxGeometry relative="1" as="geometry" />
+</mxCell>
+        <mxCell id="rel_pny_ps" value="has extensions" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;jump=none;strokeColor=#1E293B;strokeWidth=1.5;fontSize=10;fontFamily=Segoe UI,Arial;startArrow=ERmandOne;startFill=0;endArrow=ERmany;endFill=0;" edge="1" parent="1" source="t_penyewaan" target="t_perpanjangan">
+  <mxGeometry relative="1" as="geometry" />
+</mxCell>
+        <mxCell id="rel_pny_pb" value="contains" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;jump=none;strokeColor=#1E293B;strokeWidth=1.5;fontSize=10;fontFamily=Segoe UI,Arial;startArrow=ERmandOne;startFill=0;endArrow=ERmany;endFill=0;" edge="1" parent="1" source="t_penyewaan" target="t_pembayaran">
+  <mxGeometry relative="1" as="geometry" />
+</mxCell>
+        <mxCell id="rel_ps_pb" value="transaction history" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;jump=none;strokeColor=#1E293B;strokeWidth=1.5;fontSize=10;fontFamily=Segoe UI,Arial;startArrow=ERmandOne;startFill=0;endArrow=ERmandOne;endFill=0;" edge="1" parent="1" source="t_perpanjangan" target="t_pembayaran">
+  <mxGeometry relative="1" as="geometry" />
+</mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="ERD5Tables" name="ERD 5 Tabel (Persis Referensi Gambar)">
+    <mxGraphModel dx="1600" dy="1100" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="900" pageHeight="1150" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="t5_users" value="&lt;div style=&quot;text-align:center; font-weight:bold; font-size:12px; padding:6px 0; border-bottom:1.5px solid #D946EF; background-color:#FDF4FF; font-family:Segoe UI,Helvetica,Arial;&quot;&gt;users&lt;/div&gt;&lt;table style=&quot;width:100%; border-collapse:collapse; font-size:10px; font-family:Segoe UI,Helvetica,Arial;&quot;&gt;&lt;tr style=&quot;border-bottom:1px solid #D946EF;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #D946EF;&quot;&gt;uuid&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #D946EF;&quot;&gt;id&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;PK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #D946EF;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #D946EF;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #D946EF;&quot;&gt;name&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #D946EF;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #D946EF;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #D946EF;&quot;&gt;email&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;UK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #D946EF;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #D946EF;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #D946EF;&quot;&gt;password&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #D946EF;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #D946EF;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #D946EF;&quot;&gt;role&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #D946EF;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #D946EF;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #D946EF;&quot;&gt;nik&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;UK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #D946EF;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #D946EF;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #D946EF;&quot;&gt;phone&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #D946EF;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #D946EF;&quot;&gt;registration_status&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;/table&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#FDF4FF;strokeColor=#D946EF;strokeWidth=1.5;shadow=0;overflow=hidden;" vertex="1" parent="1">
+  <mxGeometry x="300" y="40" width="260" height="215" as="geometry" />
+</mxCell>
+        <mxCell id="t5_vehicles" value="&lt;div style=&quot;text-align:center; font-weight:bold; font-size:12px; padding:6px 0; border-bottom:1.5px solid #06B6D4; background-color:#ECFEFF; font-family:Segoe UI,Helvetica,Arial;&quot;&gt;vehicles&lt;/div&gt;&lt;table style=&quot;width:100%; border-collapse:collapse; font-size:10px; font-family:Segoe UI,Helvetica,Arial;&quot;&gt;&lt;tr style=&quot;border-bottom:1px solid #06B6D4;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #06B6D4;&quot;&gt;uuid&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #06B6D4;&quot;&gt;id&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;PK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #06B6D4;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #06B6D4;&quot;&gt;uuid&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #06B6D4;&quot;&gt;user_id&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;FK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #06B6D4;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #06B6D4;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #06B6D4;&quot;&gt;type&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #06B6D4;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #06B6D4;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #06B6D4;&quot;&gt;plate_number&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #06B6D4;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #06B6D4;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #06B6D4;&quot;&gt;brand&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #06B6D4;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #06B6D4;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #06B6D4;&quot;&gt;model&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #06B6D4;&quot;&gt;decimal&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #06B6D4;&quot;&gt;maximum_capacity_kw&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;/table&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#ECFEFF;strokeColor=#06B6D4;strokeWidth=1.5;shadow=0;overflow=hidden;" vertex="1" parent="1">
+  <mxGeometry x="80" y="310" width="260" height="190" as="geometry" />
+</mxCell>
+        <mxCell id="t5_garages" value="&lt;div style=&quot;text-align:center; font-weight:bold; font-size:12px; padding:6px 0; border-bottom:1.5px solid #06B6D4; background-color:#ECFEFF; font-family:Segoe UI,Helvetica,Arial;&quot;&gt;garages&lt;/div&gt;&lt;table style=&quot;width:100%; border-collapse:collapse; font-size:10px; font-family:Segoe UI,Helvetica,Arial;&quot;&gt;&lt;tr style=&quot;border-bottom:1px solid #06B6D4;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #06B6D4;&quot;&gt;uuid&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #06B6D4;&quot;&gt;id&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;PK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #06B6D4;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #06B6D4;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #06B6D4;&quot;&gt;code&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;UK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #06B6D4;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #06B6D4;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #06B6D4;&quot;&gt;type&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #06B6D4;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #06B6D4;&quot;&gt;bigint&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #06B6D4;&quot;&gt;number&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #06B6D4;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #06B6D4;&quot;&gt;decimal&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #06B6D4;&quot;&gt;daily_price&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #06B6D4;&quot;&gt;decimal&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #06B6D4;&quot;&gt;price_per_kwh&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;/table&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#ECFEFF;strokeColor=#06B6D4;strokeWidth=1.5;shadow=0;overflow=hidden;" vertex="1" parent="1">
+  <mxGeometry x="520" y="330" width="250" height="165" as="geometry" />
+</mxCell>
+        <mxCell id="t5_rentals" value="&lt;div style=&quot;text-align:center; font-weight:bold; font-size:12px; padding:6px 0; border-bottom:1.5px solid #F97316; background-color:#FFF7ED; font-family:Segoe UI,Helvetica,Arial;&quot;&gt;rentals&lt;/div&gt;&lt;table style=&quot;width:100%; border-collapse:collapse; font-size:10px; font-family:Segoe UI,Helvetica,Arial;&quot;&gt;&lt;tr style=&quot;border-bottom:1px solid #F97316;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #F97316;&quot;&gt;uuid&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #F97316;&quot;&gt;id&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;PK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #F97316;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #F97316;&quot;&gt;uuid&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #F97316;&quot;&gt;user_id&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;FK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #F97316;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #F97316;&quot;&gt;uuid&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #F97316;&quot;&gt;garage_id&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;FK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #F97316;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #F97316;&quot;&gt;uuid&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #F97316;&quot;&gt;vehicle_id&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;FK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #F97316;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #F97316;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #F97316;&quot;&gt;code&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #F97316;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #F97316;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #F97316;&quot;&gt;status&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #F97316;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #F97316;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #F97316;&quot;&gt;rental_type&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #F97316;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #F97316;&quot;&gt;date&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #F97316;&quot;&gt;start_date&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #F97316;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #F97316;&quot;&gt;date&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #F97316;&quot;&gt;end_date&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #F97316;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #F97316;&quot;&gt;smallint&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #F97316;&quot;&gt;days&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #F97316;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #F97316;&quot;&gt;decimal&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #F97316;&quot;&gt;daily_price&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #F97316;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #F97316;&quot;&gt;decimal&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #F97316;&quot;&gt;rent_amount&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #F97316;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #F97316;&quot;&gt;payment_proof_path&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;/table&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#FFF7ED;strokeColor=#F97316;strokeWidth=1.5;shadow=0;overflow=hidden;" vertex="1" parent="1">
+  <mxGeometry x="300" y="530" width="260" height="315" as="geometry" />
+</mxCell>
+        <mxCell id="t5_charging" value="&lt;div style=&quot;text-align:center; font-weight:bold; font-size:12px; padding:6px 0; border-bottom:1.5px solid #22C55E; background-color:#F0FDF4; font-family:Segoe UI,Helvetica,Arial;&quot;&gt;charging_transactions&lt;/div&gt;&lt;table style=&quot;width:100%; border-collapse:collapse; font-size:10px; font-family:Segoe UI,Helvetica,Arial;&quot;&gt;&lt;tr style=&quot;border-bottom:1px solid #22C55E;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #22C55E;&quot;&gt;uuid&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #22C55E;&quot;&gt;id&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;PK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #22C55E;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #22C55E;&quot;&gt;uuid&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #22C55E;&quot;&gt;rental_id&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;b&gt;FK&lt;/b&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #22C55E;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #22C55E;&quot;&gt;decimal&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #22C55E;&quot;&gt;current_capacity_kw&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #22C55E;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #22C55E;&quot;&gt;decimal&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #22C55E;&quot;&gt;charged_kwh&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #22C55E;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #22C55E;&quot;&gt;decimal&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #22C55E;&quot;&gt;price_per_kwh&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;border-bottom:1px solid #22C55E;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #22C55E;&quot;&gt;decimal&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #22C55E;&quot;&gt;amount&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;tr style=&quot;&quot;&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:28%; color:#475569; border-right:1px solid #22C55E;&quot;&gt;string&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 6px; width:54%; font-weight:500; color:#0F172A; border-right:1px solid #22C55E;&quot;&gt;payment_proof_path&lt;/td&gt;
+            &lt;td style=&quot;padding:3.5px 4px; width:18%; text-align:center; color:#0F172A;&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;&lt;/table&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#F0FDF4;strokeColor=#22C55E;strokeWidth=1.5;shadow=0;overflow=hidden;" vertex="1" parent="1">
+  <mxGeometry x="300" y="900" width="260" height="190" as="geometry" />
+</mxCell>
+        <mxCell id="rel5_u_v" value="has" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;jump=none;strokeColor=#1E293B;strokeWidth=1.5;fontSize=10;fontFamily=Segoe UI,Arial;startArrow=ERmandOne;startFill=0;endArrow=ERmany;endFill=0;" edge="1" parent="1" source="t5_users" target="t5_vehicles">
+  <mxGeometry relative="1" as="geometry" />
+</mxCell>
+        <mxCell id="rel5_u_r" value="rent transactions" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;jump=none;strokeColor=#1E293B;strokeWidth=1.5;fontSize=10;fontFamily=Segoe UI,Arial;startArrow=ERmandOne;startFill=0;endArrow=ERmany;endFill=0;" edge="1" parent="1" source="t5_users" target="t5_rentals">
+  <mxGeometry relative="1" as="geometry" />
+</mxCell>
+        <mxCell id="rel5_v_r" value="used at" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;jump=none;strokeColor=#1E293B;strokeWidth=1.5;fontSize=10;fontFamily=Segoe UI,Arial;startArrow=ERmandOne;startFill=0;endArrow=ERmany;endFill=0;" edge="1" parent="1" source="t5_vehicles" target="t5_rentals">
+  <mxGeometry relative="1" as="geometry" />
+</mxCell>
+        <mxCell id="rel5_g_r" value="rented at" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;jump=none;strokeColor=#1E293B;strokeWidth=1.5;fontSize=10;fontFamily=Segoe UI,Arial;startArrow=ERmandOne;startFill=0;endArrow=ERmany;endFill=0;" edge="1" parent="1" source="t5_garages" target="t5_rentals">
+  <mxGeometry relative="1" as="geometry" />
+</mxCell>
+        <mxCell id="rel5_r_c" value="transaction history" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;jump=none;strokeColor=#1E293B;strokeWidth=1.5;fontSize=10;fontFamily=Segoe UI,Arial;startArrow=ERmandOne;startFill=0;endArrow=ERmany;endFill=0;" edge="1" parent="1" source="t5_rentals" target="t5_charging">
+  <mxGeometry relative="1" as="geometry" />
+</mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

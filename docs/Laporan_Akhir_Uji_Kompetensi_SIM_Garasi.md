@@ -678,226 +678,222 @@ classDiagram
 ### 1. Desain Relasional Skema Basis Data
 Basis data fisik diimplementasikan menggunakan SQLite Relasional (`database/database.sqlite`), bebas dari tabel sisa bawaan starter-kit yang tidak digunakan, dan murni memelihara 7 entitas relasional.
 
-### 2. Diagram ERD (Notasi Crow's Foot)
+### 2. Diagram ERD (Format 3 Kolom: Tipe Data, Nama Atribut & Constraint Key)
 
 ```mermaid
 erDiagram
-    USERS ||--o| PENYEWA : "has profile"
-    USERS ||--o{ PERPANJANGAN_SEWA : "processes"
-    USERS ||--o{ PEMBAYARAN : "verifies"
-    USERS ||--o{ PENYEWA : "approves"
-    
-    PENYEWA ||--o{ KENDARAAN : "registers"
-    PENYEWA ||--o{ PENYEWAAN : "orders"
-    
-    GARASI ||--o{ PENYEWAAN : "leased in"
-    KENDARAAN ||--o{ PENYEWAAN : "assigned to"
-    
-    PENYEWAAN ||--o{ PERPANJANGAN_SEWA : "has extensions"
-    PENYEWAAN ||--|{ PEMBAYARAN : "contains"
-    PERPANJANGAN_SEWA |o--o| PEMBAYARAN : "settled with"
+    users ||--o| penyewa : "has profile"
+    users ||--o{ perpanjangan_sewa : "processes"
+    users ||--o{ pembayaran : "verifies"
+    penyewa ||--o{ kendaraan : "has"
+    penyewa ||--o{ penyewaan : "rent transactions"
+    garasi ||--o{ penyewaan : "rented at"
+    kendaraan ||--o{ penyewaan : "used at"
+    penyewaan ||--o{ perpanjangan_sewa : "has extensions"
+    penyewaan ||--|{ pembayaran : "contains"
+    perpanjangan_sewa |o--o| pembayaran : "transaction history"
 
-    USERS {
-        PK id
-        _ name
-        _ email
-        _ password
-        _ role
-        _ remember_token
-        _ created_at
-        _ updated_at
+    users {
+        bigint id PK
+        string name ""
+        string email UK
+        string password ""
+        string role ""
+        string remember_token ""
+        datetime created_at ""
+        datetime updated_at ""
     }
 
-    PENYEWA {
-        PK id
-        FK user_id
-        _ nik
-        _ nama_lengkap
-        _ no_telp
-        _ status_verifikasi
-        FK diverifikasi_oleh
-        _ tanggal_verifikasi
-        _ catatan_penolakan
-        _ created_at
-        _ updated_at
+    penyewa {
+        bigint id PK
+        bigint user_id FK
+        string nik UK
+        string nama_lengkap ""
+        string no_telp ""
+        string status_verifikasi ""
+        bigint diverifikasi_oleh FK
+        datetime tanggal_verifikasi ""
+        text catatan_penolakan ""
+        datetime created_at ""
+        datetime updated_at ""
     }
 
-    GARASI {
-        PK id
-        _ tipe_garasi
-        _ harga_sewa_harian
-        _ harga_sewa_bulanan
-        _ tarif_kwh
-        _ status
-        _ created_at
-        _ updated_at
+    garasi {
+        string id PK
+        string tipe_garasi ""
+        decimal harga_sewa_harian ""
+        decimal harga_sewa_bulanan ""
+        decimal tarif_kwh ""
+        string status ""
+        datetime created_at ""
+        datetime updated_at ""
     }
 
-    KENDARAAN {
-        PK id
-        FK penyewa_id
-        _ plat_nomor
-        _ tipe_kendaraan
-        _ merek
-        _ kapasitas_kwh
-        _ created_at
-        _ updated_at
+    kendaraan {
+        bigint id PK
+        bigint penyewa_id FK
+        string plat_nomor UK
+        string tipe_kendaraan ""
+        string merek ""
+        decimal kapasitas_kwh ""
+        datetime created_at ""
+        datetime updated_at ""
     }
 
-    PENYEWAAN {
-        PK id
-        _ nomor_transaksi
-        FK penyewa_id
-        FK garasi_id
-        FK kendaraan_id
-        _ tanggal_mulai
-        _ tanggal_selesai
-        _ tipe_sewa
-        _ durasi
-        _ tarif_pokok
-        _ biaya_listrik
-        _ total_bayar
-        _ status_sewa
-        _ created_at
-        _ updated_at
+    penyewaan {
+        bigint id PK
+        string nomor_transaksi UK
+        bigint penyewa_id FK
+        string garasi_id FK
+        bigint kendaraan_id FK
+        date tanggal_mulai ""
+        date tanggal_selesai ""
+        string tipe_sewa ""
+        integer durasi ""
+        decimal tarif_pokok ""
+        decimal biaya_listrik ""
+        decimal total_bayar ""
+        string status_sewa ""
+        datetime created_at ""
+        datetime updated_at ""
     }
 
-    PERPANJANGAN_SEWA {
-        PK id
-        _ nomor_perpanjangan
-        FK penyewaan_id
-        FK admin_id
-        _ tanggal_selesai_lama
-        _ tanggal_selesai_baru
-        _ selisih_hari
-        _ tarif_harian_snapshot
-        _ biaya_perpanjangan
-        _ created_at
-        _ updated_at
+    perpanjangan_sewa {
+        bigint id PK
+        string nomor_perpanjangan UK
+        bigint penyewaan_id FK
+        bigint admin_id FK
+        date tanggal_selesai_lama ""
+        date tanggal_selesai_baru ""
+        integer selisih_hari ""
+        decimal tarif_harian_snapshot ""
+        decimal biaya_perpanjangan ""
+        datetime created_at ""
+        datetime updated_at ""
     }
 
-    PEMBAYARAN {
-        PK id
-        _ nomor_pembayaran
-        FK penyewaan_id
-        FK perpanjangan_id
-        _ jenis_pembayaran
-        _ nominal
-        _ bukti_transfer
-        _ waktu_bayar
-        _ status_verifikasi
-        FK diverifikasi_oleh
-        _ created_at
-        _ updated_at
+    pembayaran {
+        bigint id PK
+        string nomor_pembayaran UK
+        bigint penyewaan_id FK
+        bigint perpanjangan_id FK
+        string jenis_pembayaran ""
+        decimal nominal ""
+        string bukti_transfer ""
+        datetime waktu_bayar ""
+        string status_verifikasi ""
+        bigint diverifikasi_oleh FK
+        datetime created_at ""
+        datetime updated_at ""
     }
 ```
 
+> **File Diagram Draw.io Siap Buka:** [docs/ERD_GarageRent.drawio](file:///Users/rachelletjndr/Herd/Sertifikasi/docs/ERD_GarageRent.drawio) (menyediakan tab **ERD 7 Tabel Skema Fisik** dan tab **ERD 5 Tabel Persis Referensi Gambar** dengan pewarnaan Pink, Cyan, Orange, Green, dan notasi Crow's Foot).
+
 ---
 
-### 3. Struktur Kolom Entitas Relasional (Format Standar 2 Kolom: Key & Nama Kolom)
+### 3. Struktur Kolom Entitas Relasional (Format Standar 3 Kolom Sesuai Referensi)
 
-Sesuai format diagram relasional fisik ringkas (kolom kiri indikator `PK`/`FK`/kosong dan kolom kanan nama atribut):
+#### 1. Tabel `users`
+| Tipe Data | Nama Kolom | Constraint |
+| :--- | :--- | :---: |
+| `bigint` | **id** | **PK** |
+| `string` | name | |
+| `string` | email | **UK** |
+| `string` | password | |
+| `string` | role | |
+| `string` | remember_token | |
+| `datetime` | created_at | |
+| `datetime` | updated_at | |
 
-#### 1. Tabel `USERS`
-| Key | Nama Kolom |
-| :---: | :--- |
-| **PK** | <u>**id**</u> |
-| | name |
-| | email |
-| | password |
-| | role |
-| | remember_token |
-| | created_at |
-| | updated_at |
+#### 2. Tabel `penyewa`
+| Tipe Data | Nama Kolom | Constraint |
+| :--- | :--- | :---: |
+| `bigint` | **id** | **PK** |
+| `bigint` | user_id | **FK** |
+| `string` | nik | **UK** |
+| `string` | nama_lengkap | |
+| `string` | no_telp | |
+| `string` | status_verifikasi | |
+| `bigint` | diverifikasi_oleh | **FK** |
+| `datetime` | tanggal_verifikasi | |
+| `text` | catatan_penolakan | |
+| `datetime` | created_at | |
+| `datetime` | updated_at | |
 
-#### 2. Tabel `PENYEWA`
-| Key | Nama Kolom |
-| :---: | :--- |
-| **PK** | <u>**id**</u> |
-| **FK** | **user_id** |
-| | nik |
-| | nama_lengkap |
-| | no_telp |
-| | status_verifikasi |
-| **FK** | **diverifikasi_oleh** |
-| | tanggal_verifikasi |
-| | catatan_penolakan |
-| | created_at |
-| | updated_at |
+#### 3. Tabel `garasi`
+| Tipe Data | Nama Kolom | Constraint |
+| :--- | :--- | :---: |
+| `string` | **id** | **PK** |
+| `string` | tipe_garasi | |
+| `decimal` | harga_sewa_harian | |
+| `decimal` | harga_sewa_bulanan | |
+| `decimal` | tarif_kwh | |
+| `string` | status | |
+| `datetime` | created_at | |
+| `datetime` | updated_at | |
 
-#### 3. Tabel `GARASI`
-| Key | Nama Kolom |
-| :---: | :--- |
-| **PK** | <u>**id**</u> |
-| | tipe_garasi |
-| | harga_sewa_harian |
-| | harga_sewa_bulanan |
-| | tarif_kwh |
-| | status |
-| | created_at |
-| | updated_at |
+#### 4. Tabel `kendaraan`
+| Tipe Data | Nama Kolom | Constraint |
+| :--- | :--- | :---: |
+| `bigint` | **id** | **PK** |
+| `bigint` | penyewa_id | **FK** |
+| `string` | plat_nomor | **UK** |
+| `string` | tipe_kendaraan | |
+| `string` | merek | |
+| `decimal` | kapasitas_kwh | |
+| `datetime` | created_at | |
+| `datetime` | updated_at | |
 
-#### 4. Tabel `KENDARAAN`
-| Key | Nama Kolom |
-| :---: | :--- |
-| **PK** | <u>**id**</u> |
-| **FK** | **penyewa_id** |
-| | plat_nomor |
-| | tipe_kendaraan |
-| | merek |
-| | kapasitas_kwh |
-| | created_at |
-| | updated_at |
+#### 5. Tabel `penyewaan`
+| Tipe Data | Nama Kolom | Constraint |
+| :--- | :--- | :---: |
+| `bigint` | **id** | **PK** |
+| `string` | nomor_transaksi | **UK** |
+| `bigint` | penyewa_id | **FK** |
+| `string` | garasi_id | **FK** |
+| `bigint` | kendaraan_id | **FK** |
+| `date` | tanggal_mulai | |
+| `date` | tanggal_selesai | |
+| `string` | tipe_sewa | |
+| `integer` | durasi | |
+| `decimal` | tarif_pokok | |
+| `decimal` | biaya_listrik | |
+| `decimal` | total_bayar | |
+| `string` | status_sewa | |
+| `datetime` | created_at | |
+| `datetime` | updated_at | |
 
-#### 5. Tabel `PENYEWAAN`
-| Key | Nama Kolom |
-| :---: | :--- |
-| **PK** | <u>**id**</u> |
-| | nomor_transaksi |
-| **FK** | **penyewa_id** |
-| **FK** | **garasi_id** |
-| **FK** | **kendaraan_id** |
-| | tanggal_mulai |
-| | tanggal_selesai |
-| | tipe_sewa |
-| | durasi |
-| | tarif_pokok |
-| | biaya_listrik |
-| | total_bayar |
-| | status_sewa |
-| | created_at |
-| | updated_at |
+#### 6. Tabel `perpanjangan_sewa`
+| Tipe Data | Nama Kolom | Constraint |
+| :--- | :--- | :---: |
+| `bigint` | **id** | **PK** |
+| `string` | nomor_perpanjangan | **UK** |
+| `bigint` | penyewaan_id | **FK** |
+| `bigint` | admin_id | **FK** |
+| `date` | tanggal_selesai_lama | |
+| `date` | tanggal_selesai_baru | |
+| `integer` | selisih_hari | |
+| `decimal` | tarif_harian_snapshot | |
+| `decimal` | biaya_perpanjangan | |
+| `datetime` | created_at | |
+| `datetime` | updated_at | |
 
-#### 6. Tabel `PERPANJANGAN_SEWA`
-| Key | Nama Kolom |
-| :---: | :--- |
-| **PK** | <u>**id**</u> |
-| | nomor_perpanjangan |
-| **FK** | **penyewaan_id** |
-| **FK** | **admin_id** |
-| | tanggal_selesai_lama |
-| | tanggal_selesai_baru |
-| | selisih_hari |
-| | tarif_harian_snapshot |
-| | biaya_perpanjangan |
-| | created_at |
-| | updated_at |
-
-#### 7. Tabel `PEMBAYARAN`
-| Key | Nama Kolom |
-| :---: | :--- |
-| **PK** | <u>**id**</u> |
-| | nomor_pembayaran |
-| **FK** | **penyewaan_id** |
-| **FK** | **perpanjangan_id** |
-| | jenis_pembayaran |
-| | nominal |
-| | bukti_transfer |
-| | waktu_bayar |
-| | status_verifikasi |
-| **FK** | **diverifikasi_oleh** |
-| | created_at |
-| | updated_at |
+#### 7. Tabel `pembayaran`
+| Tipe Data | Nama Kolom | Constraint |
+| :--- | :--- | :---: |
+| `bigint` | **id** | **PK** |
+| `string` | nomor_pembayaran | **UK** |
+| `bigint` | penyewaan_id | **FK** |
+| `bigint` | perpanjangan_id | **FK** |
+| `string` | jenis_pembayaran | |
+| `decimal` | nominal | |
+| `string` | bukti_transfer | |
+| `datetime` | waktu_bayar | |
+| `string` | status_verifikasi | |
+| `bigint` | diverifikasi_oleh | **FK** |
+| `datetime` | created_at | |
+| `datetime` | updated_at | |
 
 ---
 
