@@ -522,113 +522,113 @@ Basis data fisik diimplementasikan menggunakan SQLite Relasional (`database/data
 
 ```mermaid
 erDiagram
-    USERS ||--o| PENYEWA : "has profile (1:0..1)"
-    USERS ||--o{ PERPANJANGAN_SEWA : "admin processes (1:N)"
-    USERS ||--o{ PEMBAYARAN : "admin verifies (1:N)"
-    USERS ||--o{ PENYEWA : "admin approves (1:N)"
+    USERS ||--o| PENYEWA : "has profile"
+    USERS ||--o{ PERPANJANGAN_SEWA : "processes"
+    USERS ||--o{ PEMBAYARAN : "verifies"
+    USERS ||--o{ PENYEWA : "approves"
     
-    PENYEWA ||--o{ KENDARAAN : "registers (1:N)"
-    PENYEWA ||--o{ PENYEWAAN : "orders (1:N)"
+    PENYEWA ||--o{ KENDARAAN : "registers"
+    PENYEWA ||--o{ PENYEWAAN : "orders"
     
-    GARASI ||--o{ PENYEWAAN : "leased in (1:N)"
-    KENDARAAN ||--o{ PENYEWAAN : "assigned to (1:N)"
+    GARASI ||--o{ PENYEWAAN : "leased in"
+    KENDARAAN ||--o{ PENYEWAAN : "assigned to"
     
-    PENYEWAAN ||--o{ PERPANJANGAN_SEWA : "has extension logs (1:N)"
-    PENYEWAAN ||--|{ PEMBAYARAN : "contains receipts (1:N)"
-    PERPANJANGAN_SEWA |o--o| PEMBAYARAN : "settled with (0..1:1)"
+    PENYEWAAN ||--o{ PERPANJANGAN_SEWA : "has extensions"
+    PENYEWAAN ||--|{ PEMBAYARAN : "contains"
+    PERPANJANGAN_SEWA |o--o| PEMBAYARAN : "settled with"
 
     USERS {
-        bigint id PK "Auto Increment"
-        string name "VARCHAR(255)"
-        string email UK "VARCHAR(255)"
-        string password "VARCHAR(255) Hash"
-        enum role "ENUM('admin','penyewa') DFLT 'penyewa'"
-        string remember_token "VARCHAR(100) NULL"
-        timestamp created_at "TIMESTAMP"
-        timestamp updated_at "TIMESTAMP"
+        PK id
+        _ name
+        _ email
+        _ password
+        _ role
+        _ remember_token
+        _ created_at
+        _ updated_at
     }
 
     PENYEWA {
-        bigint id PK "Auto Increment"
-        bigint user_id FK,UK "Relasi 1:1 ke users.id"
-        char nik UK "CHAR(16) KTP Unik"
-        string nama_lengkap "VARCHAR(100)"
-        string no_telp "VARCHAR(20)"
-        enum status_verifikasi "ENUM('pending','approved','rejected') DFLT 'pending'"
-        bigint diverifikasi_oleh FK "FK users.id NULL"
-        timestamp tanggal_verifikasi "TIMESTAMP NULL"
-        text catatan_penolakan "TEXT NULL"
-        timestamp created_at "TIMESTAMP"
-        timestamp updated_at "TIMESTAMP"
+        PK id
+        FK user_id
+        _ nik
+        _ nama_lengkap
+        _ no_telp
+        _ status_verifikasi
+        FK diverifikasi_oleh
+        _ tanggal_verifikasi
+        _ catatan_penolakan
+        _ created_at
+        _ updated_at
     }
 
     GARASI {
-        string id PK "VARCHAR(10): S001, C001, E001"
-        enum tipe_garasi "ENUM('sepeda','mobil','listrik')"
-        decimal harga_sewa_harian "DECIMAL(12,2) >= 0"
-        decimal harga_sewa_bulanan "DECIMAL(12,2) DERIVED (25x harian)"
-        decimal tarif_kwh "DECIMAL(10,2) NULL"
-        enum status "ENUM('available','used') DFLT 'available'"
-        timestamp created_at "TIMESTAMP"
-        timestamp updated_at "TIMESTAMP"
+        PK id
+        _ tipe_garasi
+        _ harga_sewa_harian
+        _ harga_sewa_bulanan
+        _ tarif_kwh
+        _ status
+        _ created_at
+        _ updated_at
     }
 
     KENDARAAN {
-        bigint id PK "Auto Increment"
-        bigint penyewa_id FK "FK penyewa.id"
-        string plat_nomor UK "VARCHAR(20) NULL (Kecuali Sepeda)"
-        enum tipe_kendaraan "ENUM('sepeda','sepeda_motor','mobil_bensin','mobil_listrik')"
-        string merek "VARCHAR(50)"
-        decimal kapasitas_kwh "DECIMAL(5,2) NULL"
-        timestamp created_at "TIMESTAMP"
-        timestamp updated_at "TIMESTAMP"
+        PK id
+        FK penyewa_id
+        _ plat_nomor
+        _ tipe_kendaraan
+        _ merek
+        _ kapasitas_kwh
+        _ created_at
+        _ updated_at
     }
 
     PENYEWAAN {
-        bigint id PK "Auto Increment"
-        string nomor_transaksi UK "VARCHAR(30) TRX-..."
-        bigint penyewa_id FK "FK penyewa.id"
-        string garasi_id FK "FK garasi.id"
-        bigint kendaraan_id FK "FK kendaraan.id"
-        date tanggal_mulai "DATE"
-        date tanggal_selesai "DATE >= tanggal_mulai"
-        enum tipe_sewa "ENUM('harian','bulanan')"
-        int durasi "INT > 0"
-        decimal tarif_pokok "DECIMAL(12,2)"
-        decimal biaya_listrik "DECIMAL(12,2) DFLT 0.00"
-        decimal total_bayar "DECIMAL(12,2)"
-        enum status_sewa "ENUM('aktif','selesai','dibatalkan') DFLT 'aktif'"
-        timestamp created_at "TIMESTAMP"
-        timestamp updated_at "TIMESTAMP"
+        PK id
+        _ nomor_transaksi
+        FK penyewa_id
+        FK garasi_id
+        FK kendaraan_id
+        _ tanggal_mulai
+        _ tanggal_selesai
+        _ tipe_sewa
+        _ durasi
+        _ tarif_pokok
+        _ biaya_listrik
+        _ total_bayar
+        _ status_sewa
+        _ created_at
+        _ updated_at
     }
 
     PERPANJANGAN_SEWA {
-        bigint id PK "Auto Increment"
-        string nomor_perpanjangan UK "VARCHAR(30) EXT-..."
-        bigint penyewaan_id FK "FK penyewaan.id"
-        bigint admin_id FK "FK users.id (Admin)"
-        date tanggal_selesai_lama "DATE"
-        date tanggal_selesai_baru "DATE > tanggal_selesai_lama"
-        int selisih_hari "INT > 0"
-        decimal tarif_harian_snapshot "DECIMAL(12,2)"
-        decimal biaya_perpanjangan "DECIMAL(12,2)"
-        timestamp created_at "TIMESTAMP"
-        timestamp updated_at "TIMESTAMP"
+        PK id
+        _ nomor_perpanjangan
+        FK penyewaan_id
+        FK admin_id
+        _ tanggal_selesai_lama
+        _ tanggal_selesai_baru
+        _ selisih_hari
+        _ tarif_harian_snapshot
+        _ biaya_perpanjangan
+        _ created_at
+        _ updated_at
     }
 
     PEMBAYARAN {
-        bigint id PK "Auto Increment"
-        string nomor_pembayaran UK "VARCHAR(30) PAY-..."
-        bigint penyewaan_id FK "FK penyewaan.id"
-        bigint perpanjangan_id FK "FK perpanjangan_sewa.id NULL"
-        enum jenis_pembayaran "ENUM('sewa_baru','perpanjangan')"
-        decimal nominal "DECIMAL(12,2) > 0"
-        string bukti_transfer "VARCHAR(255) Storage Path"
-        datetime waktu_bayar "DATETIME"
-        enum status_verifikasi "ENUM('valid','menunggu','invalid') DFLT 'valid'"
-        bigint diverifikasi_oleh FK "FK users.id NULL"
-        timestamp created_at "TIMESTAMP"
-        timestamp updated_at "TIMESTAMP"
+        PK id
+        _ nomor_pembayaran
+        FK penyewaan_id
+        FK perpanjangan_id
+        _ jenis_pembayaran
+        _ nominal
+        _ bukti_transfer
+        _ waktu_bayar
+        _ status_verifikasi
+        FK diverifikasi_oleh
+        _ created_at
+        _ updated_at
     }
 ```
 
