@@ -782,6 +782,15 @@ Kendaraan --> Penyewaan
 Penyewaan --> PerpanjanganSewa
 Penyewaan --> Pembayaran
 PerpanjanganSewa --> Pembayaran
+
+' Relasi Model -> Enum (type definition)
+User --> RoleEnum : uses
+Penyewa --> VerificationStatusEnum : uses
+Garasi --> TipeGarasiEnum : uses
+Garasi --> StatusGarasiEnum : uses
+Kendaraan --> TipeKendaraanEnum : uses
+Penyewaan --> TipeSewaEnum : uses
+Penyewaan --> StatusSewaEnum : uses
 @enduml
 ```
 
@@ -1284,6 +1293,15 @@ classDiagram
     Penyewaan --> PerpanjanganSewa
     Penyewaan --> Pembayaran
     PerpanjanganSewa --> Pembayaran
+
+    %% Keterhubungan Model -> Enum (type definition)
+    User --> RoleEnum
+    Penyewa --> VerificationStatusEnum
+    Garasi --> TipeGarasiEnum
+    Garasi --> StatusGarasiEnum
+    Kendaraan --> TipeKendaraanEnum
+    Penyewaan --> TipeSewaEnum
+    Penyewaan --> StatusSewaEnum
 
     %% Style Classes matching Reference Template
     classDef viewStyle fill:#FEF3C7,stroke:#D97706,stroke-width:1.5px,color:#92400E;

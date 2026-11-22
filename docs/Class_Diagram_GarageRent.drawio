@@ -326,6 +326,27 @@
         <mxCell id="e_ps_pb" value="1 : 1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;jump=none;strokeColor=#4B5563;strokeWidth=1.5;fontSize=10;fontFamily=Segoe UI,Arial;" edge="1" parent="1" source="PerpanjanganSewa" target="Pembayaran">
   <mxGeometry relative="1" as="geometry" />
 </mxCell>
+        <mxCell id="e_u_role" value="uses" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;jump=none;strokeColor=#4B5563;strokeWidth=1.5;fontSize=10;fontFamily=Segoe UI,Arial;" edge="1" parent="1" source="User" target="RoleEnum">
+  <mxGeometry relative="1" as="geometry" />
+</mxCell>
+        <mxCell id="e_p_vse" value="uses" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;jump=none;strokeColor=#4B5563;strokeWidth=1.5;fontSize=10;fontFamily=Segoe UI,Arial;" edge="1" parent="1" source="Penyewa" target="VerificationStatusEnum">
+  <mxGeometry relative="1" as="geometry" />
+</mxCell>
+        <mxCell id="e_g_tge" value="uses" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;jump=none;strokeColor=#4B5563;strokeWidth=1.5;fontSize=10;fontFamily=Segoe UI,Arial;" edge="1" parent="1" source="Garasi" target="TipeGarasiEnum">
+  <mxGeometry relative="1" as="geometry" />
+</mxCell>
+        <mxCell id="e_g_sge" value="uses" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;jump=none;strokeColor=#4B5563;strokeWidth=1.5;fontSize=10;fontFamily=Segoe UI,Arial;" edge="1" parent="1" source="Garasi" target="StatusGarasiEnum">
+  <mxGeometry relative="1" as="geometry" />
+</mxCell>
+        <mxCell id="e_k_tke" value="uses" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;jump=none;strokeColor=#4B5563;strokeWidth=1.5;fontSize=10;fontFamily=Segoe UI,Arial;" edge="1" parent="1" source="Kendaraan" target="TipeKendaraanEnum">
+  <mxGeometry relative="1" as="geometry" />
+</mxCell>
+        <mxCell id="e_pny_tse" value="uses" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;jump=none;strokeColor=#4B5563;strokeWidth=1.5;fontSize=10;fontFamily=Segoe UI,Arial;" edge="1" parent="1" source="Penyewaan" target="TipeSewaEnum">
+  <mxGeometry relative="1" as="geometry" />
+</mxCell>
+        <mxCell id="e_pny_sse" value="uses" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;jump=none;strokeColor=#4B5563;strokeWidth=1.5;fontSize=10;fontFamily=Segoe UI,Arial;" edge="1" parent="1" source="Penyewaan" target="StatusSewaEnum">
+  <mxGeometry relative="1" as="geometry" />
+</mxCell>
       </root>
     </mxGraphModel>
   </diagram>

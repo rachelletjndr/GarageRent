@@ -631,6 +631,15 @@ classDiagram
     Penyewaan --> Pembayaran
     PerpanjanganSewa --> Pembayaran
 
+    %% Keterhubungan Model -> Enum (type definition)
+    User --> RoleEnum
+    Penyewa --> VerificationStatusEnum
+    Garasi --> TipeGarasiEnum
+    Garasi --> StatusGarasiEnum
+    Kendaraan --> TipeKendaraanEnum
+    Penyewaan --> TipeSewaEnum
+    Penyewaan --> StatusSewaEnum
+
     %% Style Classes matching Reference Template
     classDef viewStyle fill:#FEF3C7,stroke:#D97706,stroke-width:1.5px,color:#92400E;
     classDef controllerStyle fill:#F3F4F6,stroke:#4B5563,stroke-width:1.5px,color:#1F2937;
