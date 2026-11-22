@@ -275,6 +275,7 @@ Diagram di bawah ini memodelkan struktur kelas berorientasi objek (**MVC + Servi
 @startuml
 !theme plain
 skinparam linetype ortho
+skinparam linejump none
 skinparam classAttributeIconSize 0
 skinparam roundCorner 5
 skinparam shadowing false
@@ -722,21 +723,7 @@ RentalBookingController --> StoreRentalRequest : validates with
 ExtensionController --> StoreExtensionRequest : validates with
 ReportController --> FilterRentalReportRequest : validates with
 
-' Relasi View -> Request & Service / Model (submits & binds)
-RegisterView --> RegisterTenantRequest : validates input
-RegisterView --> AuthService : submits registration
-VerificationView --> VerifyTenantRequest : binds validation
-GarageManagementView --> BulkCreateGarageRequest : binds form
-RentalBookingView --> StoreRentalRequest : binds form
-ExtensionView --> StoreExtensionRequest : binds form
-ReportView --> FilterRentalReportRequest : binds filter
-LoginView --> AuthService : submits credentials
-ForgotPasswordView --> AuthService : submits reset request
-ResetPasswordView --> AuthService : submits new password
-ProfileSettingsView --> User : displays & updates
-SecuritySettingsView --> User : updates password
-
-' Relasi Controller -> Service / Model
+' Relasi Controller -> Service / Model (uses)
 DashboardController --> DashboardService : uses
 VerificationController --> AdminVerificationService : uses
 VerificationNoticeController --> AdminVerificationService : uses
@@ -795,15 +782,6 @@ Kendaraan --> Penyewaan
 Penyewaan --> PerpanjanganSewa
 Penyewaan --> Pembayaran
 PerpanjanganSewa --> Pembayaran
-
-' Relasi Model -> Enum (type definition)
-User --> RoleEnum : uses
-Penyewa --> VerificationStatusEnum : uses
-Garasi --> TipeGarasiEnum : uses
-Garasi --> StatusGarasiEnum : uses
-Kendaraan --> TipeKendaraanEnum : uses
-Penyewaan --> TipeSewaEnum : uses
-Penyewaan --> StatusSewaEnum : uses
 @enduml
 ```
 
@@ -1250,21 +1228,7 @@ classDiagram
     ExtensionController --> StoreExtensionRequest
     ReportController --> FilterRentalReportRequest
 
-    %% Keterhubungan View -> Request & Service / Model (binds & submits)
-    RegisterView --> RegisterTenantRequest
-    RegisterView --> AuthService
-    VerificationView --> VerifyTenantRequest
-    GarageManagementView --> BulkCreateGarageRequest
-    RentalBookingView --> StoreRentalRequest
-    ExtensionView --> StoreExtensionRequest
-    ReportView --> FilterRentalReportRequest
-    LoginView --> AuthService
-    ForgotPasswordView --> AuthService
-    ResetPasswordView --> AuthService
-    ProfileSettingsView --> User
-    SecuritySettingsView --> User
-
-    %% Keterhubungan Controller -> Service / Model
+    %% Keterhubungan Controller -> Service / Model (uses)
     DashboardController --> DashboardService
     VerificationController --> AdminVerificationService
     VerificationNoticeController --> AdminVerificationService
@@ -1320,15 +1284,6 @@ classDiagram
     Penyewaan --> PerpanjanganSewa
     Penyewaan --> Pembayaran
     PerpanjanganSewa --> Pembayaran
-
-    %% Keterhubungan Model -> Enum (type definition)
-    User --> RoleEnum
-    Penyewa --> VerificationStatusEnum
-    Garasi --> TipeGarasiEnum
-    Garasi --> StatusGarasiEnum
-    Kendaraan --> TipeKendaraanEnum
-    Penyewaan --> TipeSewaEnum
-    Penyewaan --> StatusSewaEnum
 
     %% Style Classes matching Reference Template
     classDef viewStyle fill:#FEF3C7,stroke:#D97706,stroke-width:1.5px,color:#92400E;

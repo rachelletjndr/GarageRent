@@ -574,20 +574,6 @@ classDiagram
     ExtensionController --> StoreExtensionRequest
     ReportController --> FilterRentalReportRequest
 
-    %% Keterhubungan View -> Request & Service / Model (binds & submits)
-    RegisterView --> RegisterTenantRequest
-    RegisterView --> AuthService
-    VerificationView --> VerifyTenantRequest
-    GarageManagementView --> BulkCreateGarageRequest
-    RentalBookingView --> StoreRentalRequest
-    ExtensionView --> StoreExtensionRequest
-    ReportView --> FilterRentalReportRequest
-    LoginView --> AuthService
-    ForgotPasswordView --> AuthService
-    ResetPasswordView --> AuthService
-    ProfileSettingsView --> User
-    SecuritySettingsView --> User
-
     %% Keterhubungan Controller -> Service / Model
     DashboardController --> DashboardService
     VerificationController --> AdminVerificationService
@@ -644,15 +630,6 @@ classDiagram
     Penyewaan --> PerpanjanganSewa
     Penyewaan --> Pembayaran
     PerpanjanganSewa --> Pembayaran
-
-    %% Keterhubungan Model -> Enum (type definition)
-    User --> RoleEnum
-    Penyewa --> VerificationStatusEnum
-    Garasi --> TipeGarasiEnum
-    Garasi --> StatusGarasiEnum
-    Kendaraan --> TipeKendaraanEnum
-    Penyewaan --> TipeSewaEnum
-    Penyewaan --> StatusSewaEnum
 
     %% Style Classes matching Reference Template
     classDef viewStyle fill:#FEF3C7,stroke:#D97706,stroke-width:1.5px,color:#92400E;
