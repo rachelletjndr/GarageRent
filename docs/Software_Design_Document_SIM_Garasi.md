@@ -1255,7 +1255,114 @@ erDiagram
 
 ---
 
-### 5.3 Analisis Kardinalitas & Integritas Referensial
+### 5.3 Struktur Kolom Entitas Relasional (Format Standar 2 Kolom: Key & Nama Kolom)
+
+Sesuai format diagram relasional fisik ringkas (kolom kiri indikator `PK`/`FK`/kosong dan kolom kanan nama atribut):
+
+#### 1. Tabel `USERS`
+| Key | Nama Kolom |
+| :---: | :--- |
+| **PK** | <u>**id**</u> |
+| | name |
+| | email |
+| | password |
+| | role |
+| | remember_token |
+| | created_at |
+| | updated_at |
+
+#### 2. Tabel `PENYEWA`
+| Key | Nama Kolom |
+| :---: | :--- |
+| **PK** | <u>**id**</u> |
+| **FK** | **user_id** |
+| | nik |
+| | nama_lengkap |
+| | no_telp |
+| | status_verifikasi |
+| **FK** | **diverifikasi_oleh** |
+| | tanggal_verifikasi |
+| | catatan_penolakan |
+| | created_at |
+| | updated_at |
+
+#### 3. Tabel `GARASI`
+| Key | Nama Kolom |
+| :---: | :--- |
+| **PK** | <u>**id**</u> |
+| | tipe_garasi |
+| | harga_sewa_harian |
+| | harga_sewa_bulanan |
+| | tarif_kwh |
+| | status |
+| | created_at |
+| | updated_at |
+
+#### 4. Tabel `KENDARAAN`
+| Key | Nama Kolom |
+| :---: | :--- |
+| **PK** | <u>**id**</u> |
+| **FK** | **penyewa_id** |
+| | plat_nomor |
+| | tipe_kendaraan |
+| | merek |
+| | kapasitas_kwh |
+| | created_at |
+| | updated_at |
+
+#### 5. Tabel `PENYEWAAN`
+| Key | Nama Kolom |
+| :---: | :--- |
+| **PK** | <u>**id**</u> |
+| | nomor_transaksi |
+| **FK** | **penyewa_id** |
+| **FK** | **garasi_id** |
+| **FK** | **kendaraan_id** |
+| | tanggal_mulai |
+| | tanggal_selesai |
+| | tipe_sewa |
+| | durasi |
+| | tarif_pokok |
+| | biaya_listrik |
+| | total_bayar |
+| | status_sewa |
+| | created_at |
+| | updated_at |
+
+#### 6. Tabel `PERPANJANGAN_SEWA`
+| Key | Nama Kolom |
+| :---: | :--- |
+| **PK** | <u>**id**</u> |
+| | nomor_perpanjangan |
+| **FK** | **penyewaan_id** |
+| **FK** | **admin_id** |
+| | tanggal_selesai_lama |
+| | tanggal_selesai_baru |
+| | selisih_hari |
+| | tarif_harian_snapshot |
+| | biaya_perpanjangan |
+| | created_at |
+| | updated_at |
+
+#### 7. Tabel `PEMBAYARAN`
+| Key | Nama Kolom |
+| :---: | :--- |
+| **PK** | <u>**id**</u> |
+| | nomor_pembayaran |
+| **FK** | **penyewaan_id** |
+| **FK** | **perpanjangan_id** |
+| | jenis_pembayaran |
+| | nominal |
+| | bukti_transfer |
+| | waktu_bayar |
+| | status_verifikasi |
+| **FK** | **diverifikasi_oleh** |
+| | created_at |
+| | updated_at |
+
+---
+
+### 5.4 Analisis Kardinalitas & Integritas Referensial
 
 | Pasangan Entitas | Kardinalitas | Penjelasan Integritas & Aturan Aksi Relasi |
 | :--- | :---: | :--- |
