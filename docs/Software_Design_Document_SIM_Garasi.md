@@ -284,62 +284,88 @@ skinparam defaultFontSize 11
 package "Views Layer (resources/views)" {
   class DashboardView {
     + render(array metrics, array garageStats): Html
+    + toggleQuickAction(string action): void
   }
 
   class VerificationView {
     + render(LengthAwarePaginator tenants, ?string search): Html
+    + toggleCatatanPenolakan(bool show): void
+    + inspectNikStructure(string nik): array
   }
 
   class VerificationNoticeView {
     + render(Penyewa penyewa): Html
+    + showRejectionReason(string note): void
   }
 
   class GarageManagementView {
     + render(Collection garages, array stats): Html
+    + toggleKwhField(string tipe): void
+    + calculateMonthlyDerived(float harian): float
   }
 
   class GarageCatalogView {
     + render(Collection garages, array catalogStats): Html
+    + filterGarageByType(string tipe): void
   }
 
   class RentalBookingView {
     + render(Garasi garasi, array availableGarages): Html
+    + validateUploadFile(File file): bool
+    + isGarageCompatible(string kendaraan, string garasi): bool
+    + isGarageAvailableForDates(string id, string start, string end): bool
+    + calculateDynamicEndDate(string start, string tipe, int durasi): string
+    + estimatePureTotalBayar(float pokok, float kwh, float tarifKwh): float
   }
 
   class RentalHistoryView {
     + render(LengthAwarePaginator rentals): Html
+    + formatCurrency(float nominal): string
+    + formatBadgeStatus(string status): string
   }
 
   class ExtensionView {
     + render(Collection activeRentals, ?Penyewaan selectedRental): Html
+    + validateUploadFile(File file): bool
+    + calculateExtensionDays(string lama, string baru): int
+    + calculateExtensionCost(int selisih, float tarifHarian): float
   }
 
   class ReportView {
     + render(array reportData, Collection transactions): Html
+    + switchDimensionTab(string dim): void
+    + applyDateFilter(int tahun, int bulan): void
   }
 
   class LoginView {
     + render(): Html
+    + submitLogin(string email, string password): void
   }
 
   class RegisterView {
     + render(): Html
+    + submitRegister(array data): void
+    + validateNikDigits(string nik): bool
   }
 
   class ForgotPasswordView {
     + render(): Html
+    + requestResetLink(string email): void
   }
 
   class ResetPasswordView {
     + render(string token, string email): Html
+    + submitNewPassword(string email, string password): void
   }
 
   class ProfileSettingsView {
     + render(User user): Html
+    + updateProfileInfo(string name, string email): void
   }
 
   class SecuritySettingsView {
     + render(User user): Html
+    + updatePassword(string old, string new): void
   }
 }
 
@@ -608,6 +634,14 @@ RentalBookingController --> RentalHistoryView : renders
 ExtensionController --> ExtensionView : renders
 ReportController --> ReportView : renders
 
+' Relasi View -> Service / Model (submits & updates)
+LoginView --> AuthService : submits credentials
+RegisterView --> AuthService : submits registration
+ForgotPasswordView --> AuthService : submits reset request
+ResetPasswordView --> AuthService : submits new password
+ProfileSettingsView --> User : displays & updates
+SecuritySettingsView --> User : updates password
+
 ' Relasi Controller -> Service / Model
 DashboardController --> DashboardService : uses
 VerificationController --> AdminVerificationService : uses
@@ -618,6 +652,7 @@ RentalBookingController --> RentalBookingService : uses
 ExtensionController --> RentalExtensionService : uses
 ReportController --> RentalReportService : uses
 PaymentProofController --> Pembayaran : reads
+PaymentProofController --> PaymentProofService : uses
 
 ' Relasi Antar Service
 DashboardService --> AdminVerificationService
@@ -675,62 +710,88 @@ classDiagram
     %% Presentation Layer (Views / Blade Templates)
     class DashboardView {
         +render(array, array)
+        +toggleQuickAction(string)
     }
 
     class VerificationView {
         +render(LengthAwarePaginator)
+        +toggleCatatanPenolakan(bool)
+        +inspectNikStructure(string)
     }
 
     class VerificationNoticeView {
         +render(Penyewa)
+        +showRejectionReason(string)
     }
 
     class GarageManagementView {
         +render(Collection, array)
+        +toggleKwhField(string)
+        +calculateMonthlyDerived(float)
     }
 
     class GarageCatalogView {
         +render(Collection, array)
+        +filterGarageByType(string)
     }
 
     class RentalBookingView {
         +render(Garasi, Collection)
+        +validateUploadFile(File)
+        +isGarageCompatible(string, string)
+        +isGarageAvailableForDates(string, string, string)
+        +calculateDynamicEndDate(string, string, int)
+        +estimatePureTotalBayar(float, float, float)
     }
 
     class RentalHistoryView {
         +render(LengthAwarePaginator)
+        +formatCurrency(float)
+        +formatBadgeStatus(string)
     }
 
     class ExtensionView {
         +render(Collection, Penyewaan)
+        +validateUploadFile(File)
+        +calculateExtensionDays(string, string)
+        +calculateExtensionCost(int, float)
     }
 
     class ReportView {
         +render(array, Collection)
+        +switchDimensionTab(string)
+        +applyDateFilter(int, int)
     }
 
     class LoginView {
         +render()
+        +submitLogin(string, string)
     }
 
     class RegisterView {
         +render()
+        +submitRegister(array)
+        +validateNikDigits(string)
     }
 
     class ForgotPasswordView {
         +render()
+        +requestResetLink(string)
     }
 
     class ResetPasswordView {
         +render(string, string)
+        +submitNewPassword(string, string)
     }
 
     class ProfileSettingsView {
         +render(User)
+        +updateProfileInfo(string, string)
     }
 
     class SecuritySettingsView {
         +render(User)
+        +updatePassword(string, string)
     }
 
     %% Presentation Layer (Controllers)
@@ -991,6 +1052,14 @@ classDiagram
     ExtensionController --> ExtensionView
     ReportController --> ReportView
 
+    %% Keterhubungan View -> Service / Model (submits & updates)
+    LoginView --> AuthService
+    RegisterView --> AuthService
+    ForgotPasswordView --> AuthService
+    ResetPasswordView --> AuthService
+    ProfileSettingsView --> User
+    SecuritySettingsView --> User
+
     %% Keterhubungan Controller -> Service / Model
     DashboardController --> DashboardService
     VerificationController --> AdminVerificationService
@@ -1001,6 +1070,7 @@ classDiagram
     ExtensionController --> RentalExtensionService
     ReportController --> RentalReportService
     PaymentProofController --> Pembayaran
+    PaymentProofController --> PaymentProofService
 
     DashboardService --> AdminVerificationService
     DashboardService --> GarageFactoryService

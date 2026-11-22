@@ -155,62 +155,88 @@ classDiagram
     %% Presentation Layer (Views / Blade Templates)
     class DashboardView {
         +render(array, array)
+        +toggleQuickAction(string)
     }
 
     class VerificationView {
         +render(LengthAwarePaginator)
+        +toggleCatatanPenolakan(bool)
+        +inspectNikStructure(string)
     }
 
     class VerificationNoticeView {
         +render(Penyewa)
+        +showRejectionReason(string)
     }
 
     class GarageManagementView {
         +render(Collection, array)
+        +toggleKwhField(string)
+        +calculateMonthlyDerived(float)
     }
 
     class GarageCatalogView {
         +render(Collection, array)
+        +filterGarageByType(string)
     }
 
     class RentalBookingView {
         +render(Garasi, Collection)
+        +validateUploadFile(File)
+        +isGarageCompatible(string, string)
+        +isGarageAvailableForDates(string, string, string)
+        +calculateDynamicEndDate(string, string, int)
+        +estimatePureTotalBayar(float, float, float)
     }
 
     class RentalHistoryView {
         +render(LengthAwarePaginator)
+        +formatCurrency(float)
+        +formatBadgeStatus(string)
     }
 
     class ExtensionView {
         +render(Collection, Penyewaan)
+        +validateUploadFile(File)
+        +calculateExtensionDays(string, string)
+        +calculateExtensionCost(int, float)
     }
 
     class ReportView {
         +render(array, Collection)
+        +switchDimensionTab(string)
+        +applyDateFilter(int, int)
     }
 
     class LoginView {
         +render()
+        +submitLogin(string, string)
     }
 
     class RegisterView {
         +render()
+        +submitRegister(array)
+        +validateNikDigits(string)
     }
 
     class ForgotPasswordView {
         +render()
+        +requestResetLink(string)
     }
 
     class ResetPasswordView {
         +render(string, string)
+        +submitNewPassword(string, string)
     }
 
     class ProfileSettingsView {
         +render(User)
+        +updateProfileInfo(string, string)
     }
 
     class SecuritySettingsView {
         +render(User)
+        +updatePassword(string, string)
     }
 
     %% Presentation Layer (Controllers)
@@ -455,7 +481,15 @@ classDiagram
     ExtensionController --> ExtensionView
     ReportController --> ReportView
 
-    %% Keterhubungan Arsitektur
+    %% Keterhubungan View -> Service / Model (submits & updates)
+    LoginView --> AuthService
+    RegisterView --> AuthService
+    ForgotPasswordView --> AuthService
+    ResetPasswordView --> AuthService
+    ProfileSettingsView --> User
+    SecuritySettingsView --> User
+
+    %% Keterhubungan Arsitektur Controller -> Service / Model
     DashboardController --> DashboardService
     VerificationController --> AdminVerificationService
     VerificationNoticeController --> AdminVerificationService
@@ -465,6 +499,7 @@ classDiagram
     ExtensionController --> RentalExtensionService
     ReportController --> RentalReportService
     PaymentProofController --> Pembayaran
+    PaymentProofController --> PaymentProofService
 
     DashboardService --> AdminVerificationService
     DashboardService --> GarageFactoryService
