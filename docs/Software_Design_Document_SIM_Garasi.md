@@ -1,9 +1,9 @@
 # SOFTWARE DESIGN SPECIFICATION (SDD)
-## PEMODELAN SISTEM INFORMASI PENYEWAAN GARASI KENDARAAN (SIM-GARASI)
+## PEMODELAN SISTEM INFORMASI PENYEWAAN GARASI KENDARAAN (GARAGERENT)
 
 ---
 
-**Nomor Dokumen:** SDD-SIM-GARASI-2026-001  
+**Nomor Dokumen:** SDD-GARAGERENT-2026-001  
 **Versi:** 1.3.0 (Synchronized Architecture & Implementation - Post Refinement)  
 **Tanggal Pembaruan:** 21 November 2026  
 **Dokumen Rujukan:** 
@@ -38,7 +38,7 @@
 
 ## 1. Pendahuluan & Konteks Desain
 
-Dokumen Desain Perangkat Lunak (*Software Design Document*) ini memodelkan arsitektur logis, struktural, dan relasional dari **Sistem Informasi Penyewaan Garasi Kendaraan (SIM-Garasi)**. Pemodelan mencakup tiga sudut pandang (*views*) utama rekayasa perangkat lunak berorientasi objek:
+Dokumen Desain Perangkat Lunak (*Software Design Document*) ini memodelkan arsitektur logis, struktural, dan relasional dari **Sistem Informasi Penyewaan Garasi Kendaraan (GarageRent)**. Pemodelan mencakup tiga sudut pandang (*views*) utama rekayasa perangkat lunak berorientasi objek:
 1. **Behavioral View (Use Case Diagram):** Memodelkan interaksi antara pengguna eksternal (*actors*) dan fungsionalitas sistem di dalam batasannya (*system boundary*).
 2. **Structural / Domain View (Class Diagram):** Memodelkan abstraksi berorientasi objek (*Object-Oriented Programming*), enkapsulasi data, metode bisnis, struktur model domain, dan keterhubungan *Service Layer*.
 3. **Data / Relational View (Entity-Relationship Diagram):** Memodelkan arsitektur fisik basis data relasional (*relational persistence layer*) dengan notasi standar *Crow's Foot*.
@@ -82,7 +82,7 @@ flowchart LR
     end
 
     %% System Boundary
-    subgraph System Boundary: SIM-GARASI
+    subgraph System Boundary: GarageRent
         direction TB
         
         %% Use Cases Otentikasi & Akun
@@ -169,7 +169,7 @@ skinparam packageStyle rectangle
 actor "Admin" as admin
 actor "Penyewa" as penyewa
 
-rectangle "SIM-GARASI" {
+rectangle "GarageRent" {
   usecase "UC-01: Registrasi Akun Mandiri" as UC01
   usecase "Registrasi Ulang Akun Ditolak" as UC01_Ext
   usecase "UC-02: Login Kredensial Multi-Role" as UC02
@@ -976,7 +976,7 @@ classDiagram
 
 ### 5.1 Pembersihan Skema Fisik (Pembersihan Tabel Non-Domain)
 
-Sebagai bagian dari optimalisasi arsitektur dan penyesuaian terhadap spesifikasi domain SIM-Garasi:
+Sebagai bagian dari optimalisasi arsitektur dan penyesuaian terhadap spesifikasi domain GarageRent:
 - Seluruh tabel non-domain bawaan starter-kit yang tidak digunakan (`teams`, `team_members`, `team_invitations`) serta atribut relasional `users.current_team_id` telah **dihapus bersih dari basis data fisik**.
 - Basis data relasional secara murni hanya memelihara **7 entitas domain inti**:
 

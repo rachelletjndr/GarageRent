@@ -1,5 +1,5 @@
 # LAPORAN AKHIR UJI KOMPETENSI PEMROGRAM
-## IMPLEMENTASI SISTEM INFORMASI PENYEWAAN GARASI KENDARAAN (SIM-GARASI)
+## IMPLEMENTASI SISTEM INFORMASI PENYEWAAN GARASI KENDARAAN (GARAGERENT)
 
 ---
 
@@ -32,7 +32,7 @@
 ## a. Use-Case Diagram
 
 ### 1. Deskripsi Batasan Sistem & Aktor
-Sistem Informasi Penyewaan Garasi Kendaraan (**SIM-Garasi**) membagi interaksi pengguna ke dalam 2 (dua) aktor utama di luar batasan sistem (*System Boundary*):
+Sistem Informasi Penyewaan Garasi Kendaraan (**GarageRent**) membagi interaksi pengguna ke dalam 2 (dua) aktor utama di luar batasan sistem (*System Boundary*):
 - **Admin (Aktor Internal):** Bertanggung jawab atas verifikasi identitas calon penyewa (KTP/NIK), pencetakan garasi massal ("Add Garasi") beserta tarif resminya, pemrosesan perpanjangan masa sewa eksklusif, pemantauan garasi aktif hari ini, dan visualisasi laporan multi-dimensi.
 - **Penyewa (Aktor Eksternal):** Pengguna publik yang melakukan registrasi mandiri, mendaftar ulang jika pernah ditolak, memeriksa ketersediaan garasi secara *real-time*, melakukan pemesanan sewa garasi baru (harian/bulanan), mengunggah bukti transfer, dan melihat masa sewa terkini.
 
@@ -51,7 +51,7 @@ flowchart LR
     end
 
     %% System Boundary
-    subgraph SIM-GARASI [System Boundary: SIM-GARASI]
+    subgraph GARAGERENT [System Boundary: GarageRent]
         direction TB
         
         %% Use Cases Otentikasi
@@ -593,7 +593,7 @@ Proyek ini dibangun secara profesional dengan memanfaatkan ekosistem standar ind
 
 ## e. Tampilan Fitur-Fitur Aplikasi yang Dihasilkan
 
-Aplikasi **SIM-Garasi** mengimplementasikan seluruh kebutuhan fungsional dan aturan bisnis (*Business Rules*) dari soal uji praktik:
+Aplikasi **GarageRent** mengimplementasikan seluruh kebutuhan fungsional dan aturan bisnis (*Business Rules*) dari soal uji praktik:
 
 ### 1. Modul Otentikasi & Akun Multi-Role
 - **Multi-Role Login Guard:** Pemisahan hak akses antara Administrator operasional (Susi Susanti) dan Penyewa umum.
@@ -760,10 +760,10 @@ php artisan serve
 ```
 
 **Kredensial Akun Pengujian:**
-- **Administrator Operasional:** `admin@sim-garasi.test` / `Password123!` (Nama: Susi Susanti)
+- **Administrator Operasional:** `admin@garasi.test` / `Password123!` (Nama: Susi Susanti)
 - **Penyewa Terverifikasi:** `budi@gmail.test` / `Password123!` (Nama: Budi Santoso)
 - **Calon Penyewa Pending:** `ahmad@gmail.test` / `Password123!` (Nama: Ahmad Fauzi)
 
 ---
 
-*Laporan Akhir Uji Kompetensi ini disusun secara faktual berdasarkan kode program implementasi Sistem Informasi Penyewaan Garasi Kendaraan (SIM-Garasi) dan siap diajukan dalam asesmen sertifikasi BNSP.*
+*Laporan Akhir Uji Kompetensi ini disusun secara faktual berdasarkan kode program implementasi Sistem Informasi Penyewaan Garasi Kendaraan (GarageRent) dan siap diajukan dalam asesmen sertifikasi BNSP.*

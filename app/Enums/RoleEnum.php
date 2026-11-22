@@ -3,7 +3,7 @@
 namespace App\Enums;
 
 /**
- * Roles available in SIM-Garasi system.
+ * Roles available in GarageRent system.
  */
 enum RoleEnum: string
 {

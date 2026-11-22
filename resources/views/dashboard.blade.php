@@ -1,11 +1,11 @@
-<x-layouts::app :title="__('Dashboard - SIM-Garasi')">
+<x-layouts::app :title="__('Dashboard')">
     <div class="flex h-full w-full flex-1 flex-col gap-6 rounded-xl">
         <!-- Welcome Header -->
         <div class="flex flex-col justify-between gap-4 rounded-xl border border-zinc-200 bg-white p-6 shadow-xs sm:flex-row sm:items-center dark:border-zinc-700 dark:bg-zinc-900">
             <div>
                 <flux:heading size="xl">Welcome back, {{ $user?->name }}</flux:heading>
                 <flux:text class="mt-1">
-                    Smart Garage Rental &amp; Management System (SIM-Garasi)
+                    Smart Garage Rental &amp; Management System (GarageRent)
                 </flux:text>
             </div>
 

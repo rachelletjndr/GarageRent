@@ -8,7 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 /**
- * Controller rendering the unified SIM-Garasi Dashboard for Admin and Approved Tenants.
+ * Controller rendering the unified GarageRent Dashboard for Admin and Approved Tenants.
  */
 class DashboardController extends Controller
 {

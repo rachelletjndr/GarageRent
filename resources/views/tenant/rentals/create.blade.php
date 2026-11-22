@@ -1,4 +1,4 @@
-<x-layouts::app :title="__('Sewa Garasi Baru - SIM-Garasi')">
+<x-layouts::app :title="__('Sewa Garasi Baru')">
     <div
         x-data="{
             tanggalMulai: '{{ old('tanggal_mulai', $defaultTanggalMulai) }}',

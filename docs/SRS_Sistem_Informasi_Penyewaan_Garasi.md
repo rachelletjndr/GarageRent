@@ -1,9 +1,9 @@
 # SOFTWARE REQUIREMENT SPECIFICATION (SRS)
-## SISTEM INFORMASI PENYEWAAN GARASI KENDARAAN (SIM-GARASI)
+## SISTEM INFORMASI PENYEWAAN GARASI KENDARAAN (GARAGERENT)
 
 ---
 
-**Nomor Dokumen:** SRS-SIM-GARASI-2026-001  
+**Nomor Dokumen:** SRS-GARAGERENT-2026-001  
 **Versi Dokumen:** 1.2.0 (Formula Tarif Bulanan Tetap 25x Harian & Total Bayar Sewa Baru Murni Tanpa Biaya Tambahan)  
 **Tanggal Rilis:** 21 November 2026  
 **Status:** Disetujui untuk Tahap Desain, Pemodelan UML, & Implementasi  
@@ -30,7 +30,7 @@
 ## 1. Project Overview
 
 ### 1.1 Nama Aplikasi
-Aplikasi ini bernama resmi **Sistem Informasi Penyewaan Garasi Kendaraan** dengan singkatan **SIM-Garasi** (*Vehicle Garage Rental Information System*).
+Aplikasi ini bernama resmi **Sistem Informasi Penyewaan Garasi Kendaraan** dengan nama brand **GarageRent** (*Vehicle Garage Rental Information System*).
 
 ### 1.2 Latar Belakang Sistem
 Perusahaan penyedia jasa sewa ruang parkir dan garasi kendaraan menghadapi tantangan operasional dalam mengelola ratusan unit garasi yang memiliki spesifikasi fisik dan infrastruktur berbeda:
@@ -72,7 +72,7 @@ Sistem mendefinisikan 2 (dua) peran pengguna utama dengan skema kendali akses be
 
 ```
        +-------------------------------------------------------+
-       |                   SIM-GARASI SYSTEM                   |
+       |                   GARAGERENT SYSTEM                   |
        +-------------------------------------------------------+
                     /                             \
                    /                               \
@@ -276,7 +276,7 @@ Semua aturan bisnis di bawah ini bersifat mengikat dan wajib diterapkan pada log
 
 ```
 +-------------------------------------------------------------------------------------------------------+
-|                                      ATURAN BISNIS SIM-GARASI                                         |
+|                                      ATURAN BISNIS GARAGERENT                                         |
 +-------------------------------------------------------------------------------------------------------+
 | KODE   | NAMA ATURAN BISNIS              | FORMULASI / KETENTUAN LOGIS                                |
 +--------+---------------------------------+------------------------------------------------------------+

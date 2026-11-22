@@ -1,7 +1,7 @@
-<x-layouts::auth :title="__('Login - SIM-Garasi')">
+<x-layouts::auth :title="__('Login')">
     <div class="flex flex-col gap-6">
         <x-auth-header
-            :title="__('Welcome Back to SIM-Garasi')"
+            :title="__('Welcome Back to GarageRent')"
             :description="__('Login dengan email dan password kamu buat akses dashboard penyewaan garasi.')"
         />
 

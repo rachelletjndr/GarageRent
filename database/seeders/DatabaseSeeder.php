@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Hash;
 class DatabaseSeeder extends Seeder
 {
     /**
-     * Seed the application's database with SIM-Garasi baseline accounts, garages, vehicles, and rentals.
+     * Seed the application's database with GarageRent baseline accounts, garages, vehicles, and rentals.
      */
     public function run(): void
     {

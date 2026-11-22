@@ -5,7 +5,7 @@
                 <div>
                     <flux:heading size="lg">Status Verifikasi Identitas (KTP)</flux:heading>
                     <flux:text class="mt-0.5 text-sm">
-                        Sistem Informasi Penyewaan Garasi Kendaraan (SIM-Garasi)
+                        Sistem Informasi Penyewaan Garasi Kendaraan (GarageRent)
                     </flux:text>
                 </div>
 

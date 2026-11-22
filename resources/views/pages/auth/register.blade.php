@@ -1,4 +1,4 @@
-<x-layouts::auth :title="__('Registrasi Penyewa - SIM-Garasi')">
+<x-layouts::auth :title="__('Registrasi Penyewa')">
     <div class="flex flex-col gap-6">
         <x-auth-header
             :title="__('Registrasi Akun Penyewa')"
